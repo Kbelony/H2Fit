@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: Product-Sans;
+  src: url(./Font/Product-Sans.ttf);
+}
+@font-face {
+    font-family: Product-Sans-Regular;
+    src: url(./Font/Product-Sans-Regular.ttf);
+}
+
+body{
+    background-color: #00171F;
+    font-family: 'Product-Sans';
+}
