@@ -15,3 +15,20 @@ body{
     background-color: #00171F;
     font-family: 'Product-Sans';
 }
+
+.navbar-component{
+    .desktop-part{
+        display: block;
+    }
+    .mobile-part{
+        display: none;
+    }
+    @media (max-width: 820px) {
+        .desktop-part{
+            display: none;
+        }
+        .mobile-part{
+            display: inline;
+        }
+      }
+}
