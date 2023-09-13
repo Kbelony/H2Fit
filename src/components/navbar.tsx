@@ -7,6 +7,24 @@ const Navbar = () => {
   const languageContext = useContext(LanguageContext);
   const switchLanguage = languageContext?.switchLanguage || (() => {});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { language } = useContext(LanguageContext) || { language: "en" };
+  interface Translations {
+    [key: string]: {
+      login: string;
+    };
+  }
+
+  const translations: Translations = {
+    fr: {
+      login: "Login",
+    },
+    en: {
+      login: "Login",
+    },
+  };
+
+  const translationKey = language || "en";
+  const { login } = translations[translationKey];
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -25,6 +43,9 @@ const Navbar = () => {
             </picture>
           </li>
           <li className="nav-list-item md:flex md:justify-end">
+            <div className="login">
+              <p className="text-white pr-4">{login}</p>
+            </div>
             <picture
               className="world"
               id="menu-button"

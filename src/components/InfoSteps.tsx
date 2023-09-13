@@ -20,7 +20,7 @@ const InfoSteps = () => {
     en: {
       starting:
         "To start creating a program for you we would need some information",
-      age: "How old are you?",
+      age: "How old are you ?",
     },
   };
 
