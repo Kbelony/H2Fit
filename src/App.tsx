@@ -1,10 +1,15 @@
 import "./assets/style.scss";
+import InfoSteps from "./components/InfoSteps";
+import { LanguageProvider } from "./components/LanguageContext";
 import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      <LanguageProvider>
+        <Navbar />
+        <InfoSteps />
+      </LanguageProvider>
     </div>
   );
 }
