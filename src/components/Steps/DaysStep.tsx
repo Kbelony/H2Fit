@@ -46,7 +46,7 @@ const DaysStep = () => {
         <h5 className="text-white text-base text-center p-7 pb-0">
           {starting}
         </h5>
-        <h5 className="text-white mt-1 text-3xl">{level}</h5>
+        <h5 className="text-white mt-1 text-center text-3xl">{level}</h5>
         <div className="container md:mt-12 mt-8">
           <div className="grid grid-cols-2 gap-5 age-container">
             <span className="age-btn py-16 text-center">{beginner}</span>
