@@ -72,7 +72,7 @@ body{
     .progress-container {
         width: 100%;
         height: 10px;
-        background-color: #ccc;
+        background-color: white;
         position: relative;
         .progress-bar {
             height: 100%;
@@ -115,7 +115,7 @@ body{
         cursor: pointer;
         border: 6px solid transparent;
     }
-    .age-btn:hover{
+    .age-btn:hover, .age-btn.active{
         border: 6px solid #00B4D8;
     }
 }
