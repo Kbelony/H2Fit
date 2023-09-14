@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "./LanguageContext";
+import { LanguageContext } from "../LanguageContext";
 
 const AgeStep = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };

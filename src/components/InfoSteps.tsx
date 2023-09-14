@@ -1,7 +1,8 @@
-import AgeStep from "./AgeStep";
+import AgeStep from "./Steps/AgeStep";
 import { useContext, useState, useEffect } from "react";
 import { LanguageContext } from "./LanguageContext";
-import LevelStep from "./LevelStep";
+import LevelStep from "./Steps/LevelStep";
+import DaysStep from "./Steps/DaysStep";
 
 const InfoSteps = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -38,14 +39,12 @@ const InfoSteps = () => {
 
   const handleNext = () => {
     setStep(step + 1);
-    // Save step to local storage
     localStorage.setItem("step", String(step + 1));
   };
 
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1);
-      // Save step to local storage
       localStorage.setItem("step", String(step - 1));
     }
   };
@@ -56,13 +55,15 @@ const InfoSteps = () => {
         return <AgeStep />;
       case 2:
         return <LevelStep />;
+      case 3:
+        return <DaysStep />; // Render the DaysStep component as the third step
       default:
         return null;
     }
   };
 
   const getProgressBarWidth = () => {
-    return (step / 2) * 100 + "%";
+    return ((step - 1) / 2) * 100 + "%"; // Adjusted for the third step
   };
 
   return (
@@ -74,22 +75,24 @@ const InfoSteps = () => {
         />
       </div>
       {renderStep()}
-      {step > 1 && (
-        <div
-          className="back-btn text-center py-4 px-6 mt-12"
-          onClick={handleBack}
-        >
-          <span className="text-white uppercase">{back}</span>
-        </div>
-      )}
-      {step === 1 && (
-        <div
-          className="next-btn text-center py-4 px-6 mt-12"
-          onClick={handleNext}
-        >
-          <span className="text-white uppercase">{next}</span>
-        </div>
-      )}
+      <div className="flex justify-between">
+        {step > 1 && (
+          <div
+            className="back-btn text-center py-4 px-6 mt-12"
+            onClick={handleBack}
+          >
+            <span className="text-white uppercase">{back}</span>
+          </div>
+        )}
+        {step !== 3 && (
+          <div
+            className="next-btn text-center py-4 px-6 ml-12 mt-12"
+            onClick={handleNext}
+          >
+            <span className="text-white uppercase">{next}</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

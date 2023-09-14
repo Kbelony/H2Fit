@@ -1,7 +1,7 @@
 import "./assets/style.scss";
 import InfoSteps from "./components/InfoSteps";
 import { LanguageProvider } from "./components/LanguageContext";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
