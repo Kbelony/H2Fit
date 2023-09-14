@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
 
 const LevelStep = () => {
@@ -50,6 +50,13 @@ const LevelStep = () => {
     // Stocker l'âge sélectionné dans le local storage
     localStorage.setItem("selectedLevel", levelCategory);
   };
+
+  useEffect(() => {
+    const selectedLevel = localStorage.getItem("selectedLevel");
+    if (selectedLevel) {
+      setActiveLevel(selectedLevel);
+    }
+  }, []);
 
   return (
     <div className="level-step-component">

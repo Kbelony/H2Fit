@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
 
 const AgeStep = () => {
@@ -37,6 +37,13 @@ const AgeStep = () => {
     // Stocker l'âge sélectionné dans le local storage
     localStorage.setItem("selectedAge", ageCategory);
   };
+
+  useEffect(() => {
+    const selectedAge = localStorage.getItem("selectedAge");
+    if (selectedAge) {
+      setActiveAge(selectedAge);
+    }
+  }, []);
 
   return (
     <div className="age-step-component">

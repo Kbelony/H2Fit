@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
 
 const DaysStep = () => {
@@ -50,6 +50,13 @@ const DaysStep = () => {
     // Stocker l'âge sélectionné dans le local storage
     localStorage.setItem("selectedDays", daysCategory);
   };
+
+  useEffect(() => {
+    const selectedDays = localStorage.getItem("selectedDays");
+    if (selectedDays) {
+      setActiveDays(selectedDays);
+    }
+  }, []);
 
   return (
     <div className="level-step-component">
