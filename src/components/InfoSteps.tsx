@@ -33,13 +33,13 @@ const InfoSteps = () => {
         <h5 className="text-white text-base text-center p-7 pb-0">
           {starting}
         </h5>
-        <h5 className="text-white mt-3 text-3xl">{age}</h5>
-        <div className="container md:mt-25 mt-48">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-white text-center">1</div>
-            <div className="text-white text-center">1</div>
-            <div className="text-white text-center">1</div>
-            <div className="text-white text-center">1</div>
+        <h5 className="text-white mt-4 text-3xl">{age}</h5>
+        <div className="container md:mt-12 mt-8">
+          <div className="grid grid-cols-2 gap-5 age-container">
+            <span className="age-btn py-16 text-center">18 - 25</span>
+            <span className="age-btn py-16 text-center">26 - 35</span>
+            <span className="age-btn py-16 text-center">36 - 55</span>
+            <span className="age-btn py-16 text-center">55 - 75</span>
           </div>
         </div>
       </div>
