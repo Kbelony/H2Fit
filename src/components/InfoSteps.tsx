@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { LanguageContext } from "./LanguageContext";
 import LevelStep from "./Steps/LevelStep";
 import DaysStep from "./Steps/DaysStep";
+import RegisterStep from "./Steps/RegisterStep";
 
 const InfoSteps = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -57,13 +58,15 @@ const InfoSteps = () => {
         return <LevelStep />;
       case 3:
         return <DaysStep />; // Render the DaysStep component as the third step
+      case 4:
+        return <RegisterStep />;
       default:
         return null;
     }
   };
 
   const getProgressBarWidth = () => {
-    return ((step - 1) / 2) * 100 + "%"; // Adjusted for the third step
+    return ((step - 1) / 3) * 100 + "%"; // Adjusted for the third step
   };
 
   return (
@@ -78,15 +81,15 @@ const InfoSteps = () => {
       <div className="flex justify-between">
         {step > 1 && (
           <div
-            className="back-btn text-center py-4 px-6 mt-12"
+            className="back-btn text-center py-4 px-6 mr-12 mt-12"
             onClick={handleBack}
           >
             <span className="text-white uppercase">{back}</span>
           </div>
         )}
-        {step !== 3 && (
+        {step !== 4 && (
           <div
-            className="next-btn text-center py-4 px-6 ml-12 mt-12"
+            className="next-btn text-center py-4 px-6 mt-12"
             onClick={handleNext}
           >
             <span className="text-white uppercase">{next}</span>
