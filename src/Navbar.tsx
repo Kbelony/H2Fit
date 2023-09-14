@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import Logotext from "../assets/img/Logo-text.svg";
-import world from "../assets/img/world.svg";
-import { LanguageContext } from "./LanguageContext";
+import Logotext from "./assets/img/Logo-text.svg";
+import world from "./assets/img/world.svg";
+import { LanguageContext } from "./components/LanguageContext";
 
 const Navbar = () => {
   const languageContext = useContext(LanguageContext);
