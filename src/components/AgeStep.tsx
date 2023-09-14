@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
 
-const InfoSteps = () => {
+const AgeStep = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
 
   interface Translations {
@@ -47,4 +47,4 @@ const InfoSteps = () => {
   );
 };
 
-export default InfoSteps;
+export default AgeStep;
