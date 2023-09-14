@@ -65,7 +65,29 @@ body{
         }
     }
 }
-.info-step-component{
+.infos-step-component{
+    .next-btn{
+        margin-left: 82%;
+        border-radius: 4px;
+        background: #00B4D8;
+        cursor: pointer;
+        width: 8%;
+    }
+    .next-btn:hover{
+        background: #06D6FF;
+    }
+    @media (max-width: 820px) {
+        .next-btn{
+            margin-left: 64% !important;
+            width: 30% !important;
+        }
+    }
+}
+.age-step-component{
+    .age-container{
+        width: 90%;
+        margin-left: 5%;
+    }
     .age-btn{
         background-color: white;
         border-radius: 5px;
@@ -74,11 +96,5 @@ body{
     }
     .age-btn:hover{
         border: 6px solid #00B4D8;
-    }
-    .age-container{
-        width: 90%;
-        margin-left: 5%;
-    }
-    @media (max-width: 820px) {
     }
 }

@@ -1,5 +1,5 @@
 import "./assets/style.scss";
-import AgeStep from "./components/AgeStep";
+import InfoSteps from "./components/InfoSteps";
 import { LanguageProvider } from "./components/LanguageContext";
 import Navbar from "./components/navbar";
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <LanguageProvider>
         <Navbar />
-        <AgeStep />
+        <InfoSteps />
       </LanguageProvider>
     </div>
   );
