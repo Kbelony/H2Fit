@@ -17,8 +17,7 @@ const DaysStep = () => {
 
   const translations: Translations = {
     fr: {
-      starting:
-        "Pour commencer a vous créer un programme ils nous faudrait quelques informations",
+      starting: "Encore une dernière et c’est bon",
       level: "À quelle fréquence voulez-vous vous entraîner ?",
       beginner: "1 - 2 jours par semaine",
       intermediate: "3 - 4 jours par semaine",
@@ -26,8 +25,7 @@ const DaysStep = () => {
       expert: "Tout les jours !",
     },
     en: {
-      starting:
-        "To start creating a program for you we would need some information",
+      starting: "One more and it's good",
       level: "How often do you want to workout ?",
       beginner: "1 - 2 day per week",
       intermediate: "3 - 4 day per week",
