@@ -1,4 +1,4 @@
-import BackgroundVideo from "../assets/videos/pexels-tima-miroshnichenko-6388396 (Original).mp4"; // Assurez-vous d'importer la vidéo dans votre projet
+import BackgroundVideo from "../assets/videos/pexels.mp4"; // Assurez-vous d'importer la vidéo dans votre projet
 import { useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
 import { Link } from "react-router-dom";
@@ -49,8 +49,7 @@ const Homepage = () => {
           loop
           muted
           preload="auto"
-          className="absolute top-0 left-0 min-w-full min-h-full object-cover z-0"
-          style={{ zIndex: -1 }}
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
           <source src={BackgroundVideo} type="video/mp4" />
           Votre navigateur ne prend pas en charge la vidéo HTML5.

@@ -79,6 +79,8 @@ body{
     @media (max-width: 820px) {
     .mobile-view{
             display: block!important;
+            background: url(./videos/pexels.mp4);
+background-size: cover;
             .slogan,.paragraph,.sign-up-btn,.sign-in-btn{
                 font-family: 'Product-Sans-Regular';
             }
