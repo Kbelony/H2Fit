@@ -3,7 +3,7 @@ import { LanguageContext } from "../LanguageContext";
 import bar from "../../assets/img/bar.svg";
 import apple from "../../assets/img/apple.svg";
 import google from "../../assets/img/Google.svg";
-import twitter from "../../assets/img/twitter.svg";
+import twitter from "../../assets/img/Twitter.svg";
 
 const RegisterStep = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
