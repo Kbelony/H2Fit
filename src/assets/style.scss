@@ -12,7 +12,7 @@
 }
 
 body{
-    background-color: #00171F;
+    background-color: #000000;
     font-family: 'Product-Sans';
 }
 
@@ -35,6 +35,7 @@ body{
     margin-right: 80px;
     top: 45px;
     border-right: 3px solid white;
+    font-family: 'Product-Sans-Regular';
     }
     .world{
         margin-top: 15px;
@@ -68,6 +69,40 @@ body{
         }
     }
 }
+.homepage-component{
+    .mobile-view{
+        display: none;
+    }
+    .desktop-view{
+        display: block;
+    }
+    @media (max-width: 820px) {
+    .mobile-view{
+            display: block!important;
+            .slogan,.paragraph,.sign-up-btn,.sign-in-btn{
+                font-family: 'Product-Sans-Regular';
+            }
+            .sign-up-btn{
+                border-radius: 50px;
+                background: #FFF;
+                color: #000000;
+                width: 190px;
+            }
+            .sign-in-btn{
+                border-radius: 50px;
+                border: 2px solid #969696;
+                background: #00171F;
+                width: 190px;
+            }
+            .sign-in-btn:hover{
+                background: #4152EF;
+            }
+        }
+    .desktop-view{
+            display: none!important;
+    }
+}
+}
 .info-steps-component {
     display: flex;
     flex-direction: column;
@@ -79,34 +114,41 @@ body{
         position: relative;
         .progress-bar {
             height: 100%;
-            background-color: #00B4D8;
+            background-color: #4152EF;
             transition: width 1.4s ease;
         }
     }
     .next-btn {
         cursor: pointer;
-        background: #00B4D8;
-        border: none;
-        border-radius: 4px;
+        background: #00171F;
+        border: 2px solid #969696;
+        border-radius: 44px;
         color: white;
         transition: background-color 0.3s ease;
+        font-family: 'Product-Sans-Regular';
+        width: 180px;
     }
     .back-btn{
         cursor: pointer;
         background: #434343;
         border: none;
-        border-radius: 4px;
+        border-radius: 44px;
         color: white;
         transition: background-color 0.3s ease;
+        font-family: 'Product-Sans-Regular';
+        width: 180px;
     }
     .next-btn:hover {
-        background: #06D6FF;
+        background: #4152EF;
     }
     .back-btn:hover {
         background: #616161;
     }
 }
 .age-step-component,.level-step-component{
+    .starting{
+        font-family: 'Product-Sans-Regular';
+    }
     .age-container{
         width: 90%;
         margin-left: 5%;
@@ -118,7 +160,7 @@ body{
         border: 6px solid transparent;
     }
     .age-btn:hover, .age-btn.active{
-        border: 6px solid #00B4D8;
+        border: 6px solid #4152EF;
     }
 }
 .register-step-component{

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Logotext from "./assets/img/Logo.svg";
 import world from "./assets/img/world.svg";
 import { LanguageContext } from "./components/LanguageContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const languageContext = useContext(LanguageContext);
@@ -38,9 +39,11 @@ const Navbar = () => {
       <div className="navbar-component mb-16">
         <ul className="nav-list pt-5 pl-9 ">
           <li className="nav-list-item md:flex md:justify-start">
-            <picture className="logo">
-              <img className="w-15 ml-0 md:ml-20 md:w24" src={Logotext} />
-            </picture>
+            <Link to={"/"}>
+              <picture className="logo">
+                <img className="w-15 ml-0 md:ml-20 md:w24" src={Logotext} />
+              </picture>
+            </Link>
           </li>
           <li className="nav-list-item md:flex md:justify-end">
             <div className="login">

@@ -1,4 +1,5 @@
 import "./assets/style.scss";
+import Homepage from "./components/Homepage";
 import InfoSteps from "./components/InfoSteps";
 import { LanguageProvider } from "./components/LanguageContext";
 import Navbar from "./Navbar";
@@ -11,6 +12,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
+            <Route path="/" element={<Homepage />} />
             <Route path="/step" element={<InfoSteps />} />
           </Routes>
         </BrowserRouter>
