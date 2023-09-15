@@ -59,11 +59,11 @@ const DaysStep = () => {
   return (
     <div className="level-step-component">
       <div className="flex flex-col items-center justify-center">
-        <h5 className="text-white text-base text-center p-7 pb-0">
+        <h5 className="text-white starting text-base text-center p-7 pb-0">
           {starting}
         </h5>
-        <h5 className="text-white mt-4 text-center text-2xl">{level}</h5>
-        <div className="container md:mt-12 mt-8">
+        <h5 className="text-white mt-3 text-center text-2xl">{level}</h5>
+        <div className="container md:mt-12 mt-6">
           <div className="grid grid-cols-2 gap-5 age-container">
             <span
               className={`age-btn py-16 text-center ${

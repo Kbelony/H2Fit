@@ -62,7 +62,7 @@ const RegisterStep = () => {
   return (
     <div className="register-step-component">
       <div className="flex flex-col items-center justify-center">
-        <h5 className="text-white text-base text-center p-7 pb-0">
+        <h5 className="text-white starting text-base text-center p-7 pb-0">
           {starting}
         </h5>
         <div className="container md:mt-12 mt-8">

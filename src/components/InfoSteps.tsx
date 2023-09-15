@@ -81,10 +81,10 @@ const InfoSteps = () => {
       <div className="flex justify-between">
         {step > 1 && (
           <div
-            className="back-btn text-center py-4 px-6 mr-12 mt-12"
+            className="back-btn text-center py-4 px-6 mr-4 mt-12"
             onClick={handleBack}
           >
-            <span className="text-white uppercase">{back}</span>
+            <span className="text-white ">{back}</span>
           </div>
         )}
         {step !== 4 && (
@@ -92,7 +92,7 @@ const InfoSteps = () => {
             className="next-btn text-center py-4 px-6 mt-12"
             onClick={handleNext}
           >
-            <span className="text-white uppercase">{next}</span>
+            <span className="text-white">{next}</span>
           </div>
         )}
       </div>
