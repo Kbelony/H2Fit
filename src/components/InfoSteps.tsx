@@ -71,7 +71,7 @@ const InfoSteps = () => {
 
   return (
     <div className="info-steps-component">
-      <div className="progress-container mt-4 ">
+      <div className="progress-container mt-8 ">
         <div
           className="progress-bar"
           style={{ width: getProgressBarWidth() }}

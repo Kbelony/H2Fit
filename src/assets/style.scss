@@ -33,8 +33,11 @@ body{
     .login{
     position: absolute;
     margin-right: 80px;
-    top: 30px;
+    top: 45px;
     border-right: 3px solid white;
+    }
+    .world{
+        margin-top: 15px;
     }
     .logo,.world,.login{
         z-index: 10000;
@@ -51,12 +54,12 @@ body{
         }
         .login{
         margin-right: 0px!important;
-        top: 38px !important;
+        top: 42px !important;
         margin-left: 242px;
         }
         .world{
         margin-left: 323px;
-        margin-top: 7px;
+        margin-top: 11px!important;
         }
     }
     @media (max-width: 900px) and (orientation: landscape) {
