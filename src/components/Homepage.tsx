@@ -48,6 +48,7 @@ const Homepage = () => {
           autoPlay
           loop
           muted
+          playsInline // Ajoutez cette ligne
           preload="auto"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
