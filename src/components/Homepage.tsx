@@ -48,13 +48,14 @@ const Homepage = () => {
           autoPlay
           loop
           muted
+          preload="auto"
           className="absolute top-0 left-0 w-full h-full object-cover"
         >
           <source src={BackgroundVideo} type="video/mp4" />
           Votre navigateur ne prend pas en charge la vidéo HTML5.
         </video>
 
-        <div className="fixed top-20 left-0 w-full h-full flex flex-col justify-start text-white">
+        <div className="fixed top-10 left-0 w-full h-full flex flex-col justify-start text-white">
           <div className="slogan text-5xl mt-96">
             <h1 className="z-10 ml-3 mb-2">{slogan1}</h1>
             <h1 className="z-10 ml-3 mb-2">{slogan2}</h1>
