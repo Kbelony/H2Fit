@@ -6,10 +6,10 @@ const RegisterStep = () => {
 
   interface Translations {
     [key: string]: {
-      starting: string;
       firstname: string;
       name: string;
       password: string;
+      email: string;
       confirmPassword: string;
       submit: string;
     };
@@ -17,19 +17,17 @@ const RegisterStep = () => {
 
   const translations: Translations = {
     fr: {
-      starting:
-        "Pour commencer a vous créer un programme ils nous faudrait quelques informations",
       firstname: "Prénom",
       name: "Nom",
       password: "Mot de passe",
+      email: "Entrer votre email ...",
       confirmPassword: "Confirmer le mot de passe",
       submit: "S'inscire",
     },
     en: {
-      starting:
-        "To start creating a program for you we would need some information",
       firstname: "First name",
       name: "Name",
+      email: "Enter your email ...",
       password: "Password",
       confirmPassword: "Confirm password",
       submit: "Submit",
@@ -37,7 +35,7 @@ const RegisterStep = () => {
   };
 
   const translationKey = language || "en";
-  const { starting, firstname, name, password, confirmPassword, submit } =
+  const { firstname, name, password, email, confirmPassword, submit } =
     translations[translationKey];
   const [formData, setFormData] = useState({
     firstname: "",
@@ -61,15 +59,11 @@ const RegisterStep = () => {
 
   return (
     <div className="register-step-component">
-      <div className="flex flex-col items-center justify-center">
-        <h5 className="text-white starting text-base text-center p-7 pb-0">
-          {starting}
-        </h5>
+      <div className="flex flex-col items-start justify-start">
         <div className="container md:mt-12 mt-8">
-          <div className="flex flex-col justify-start">
+          <div className="flex flex-col justify-start mr-10">
             <div className="register-form ml-8">
               <form onSubmit={handleSubmit}>
-                <label htmlFor="firstname">{firstname}:</label>
                 <input
                   type="text"
                   id="name"
@@ -77,9 +71,9 @@ const RegisterStep = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="mb-6 flex flex-col"
+                  placeholder={firstname}
                 />
 
-                <label htmlFor="name">{name}:</label>
                 <input
                   type="text"
                   id="firstname"
@@ -87,9 +81,9 @@ const RegisterStep = () => {
                   value={formData.firstname}
                   onChange={handleChange}
                   className="mb-6 flex flex-col"
+                  placeholder={name}
                 />
 
-                <label htmlFor="email">Email:</label>
                 <input
                   type="email"
                   id="email"
@@ -97,9 +91,9 @@ const RegisterStep = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="mb-6 flex flex-col"
+                  placeholder={email}
                 />
 
-                <label htmlFor="name">{password}:</label>
                 <input
                   type="password"
                   id="password"
@@ -107,9 +101,9 @@ const RegisterStep = () => {
                   value={formData.password}
                   onChange={handleChange}
                   className="mb-6 flex flex-col"
+                  placeholder={password}
                 />
 
-                <label htmlFor="name">{confirmPassword}:</label>
                 <input
                   type="password"
                   id="confirmPassword"
@@ -117,10 +111,11 @@ const RegisterStep = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   className="mb-6 flex flex-col"
+                  placeholder={confirmPassword}
                 />
 
                 <button
-                  className="text-white py-4 px-6 submit-btn"
+                  className="text-white py-3 px-6 submit-btn"
                   type="submit"
                 >
                   {submit}
