@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
 import bar from "../../assets/img/bar.svg";
 import apple from "../../assets/img/apple.svg";
-import google from "../../assets/img/google.svg";
+import google from "../../assets/img/Google.svg";
 import twitter from "../../assets/img/twitter.svg";
 
 const RegisterStep = () => {
