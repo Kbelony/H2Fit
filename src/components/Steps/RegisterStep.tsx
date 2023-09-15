@@ -1,5 +1,9 @@
 import { useContext, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
+import bar from "../../assets/img/bar.svg";
+import apple from "../../assets/img/apple.svg";
+import google from "../../assets/img/google.svg";
+import twitter from "../../assets/img/twitter.svg";
 
 const RegisterStep = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -121,6 +125,18 @@ const RegisterStep = () => {
                   {submit}
                 </button>
               </form>
+              <img className="bar mt-5 w-full" src={bar} alt="" />
+              <div className="group-social mt-7 flex flex-row justify-center">
+                <div className="apple-btn social-btn mr-4 py-3 px-10">
+                  <img src={apple} alt="" />
+                </div>
+                <div className="google-btn social-btn mr-4 py-3 px-10">
+                  <img src={google} alt="" />
+                </div>
+                <div className="twitter-btn social-btn py-3 px-10">
+                  <img src={twitter} alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
