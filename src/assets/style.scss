@@ -251,6 +251,15 @@ body{
     }
     .desktop-view{
         display: block;
+        .right-img{
+
+            img{
+                height: 88vh!important;
+                width: 48vw;
+                object-fit: cover;
+            }
+           
+        }
     }
     @media (max-width: 820px) {
         .desktop-view{
