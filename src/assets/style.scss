@@ -82,6 +82,12 @@ body{
         color: #000000;
         width: 190px;
     }
+    .sign-up-btn:hover{
+        color: white;
+        background-color: #4152EF;
+        border: 3px solid #969696;
+        transition: 0.6s ease;
+    }
     .mobile-view{
         display: none;
     }
@@ -107,6 +113,21 @@ body{
     .desktop-view{
             display: none!important;
     }
+}
+    @media (orientation: landscape) {
+        .mobile-view{
+            video{
+                height: 140%;
+            }
+            
+            .slogan{
+                margin-top: 10rem!important;
+            }
+            
+        }
+        .vids{
+            height: 138vh;
+        }
 }
 }
 .info-steps-component {
@@ -281,5 +302,15 @@ body{
                 }
         }
 }
+}
+@media (orientation: landscape) {
+    .mobile-view{
+        display: block;
+        margin-left: 5%;
+    }
+    .desktop-view{
+        display: none;
+    }
+
 }
 }

@@ -25,7 +25,7 @@ const Login = () => {
       details: "Veuillez entrer vos coordonnées pour vous connecter.",
       password: "Mot de passe",
       email: "Entrer votre email ...",
-      submit: "S'inscire",
+      submit: "S'inscrire",
     },
     en: {
       welcome: "Welcome back !",

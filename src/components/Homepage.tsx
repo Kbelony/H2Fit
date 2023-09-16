@@ -13,6 +13,7 @@ const Homepage = () => {
       slogan2: string;
       slogan3: string;
       paragraph: string;
+      paragraphDesktop: string;
       signIn: string;
       signUp: string;
     };
@@ -25,6 +26,8 @@ const Homepage = () => {
       slogan3: "Get Healthy",
       paragraph:
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi,quibusdam. Quia harum delectus veniam cupiditate optio nobis beatae alias porro, amet ipsum, natus eum quisquam dolorum nesciunt velit dolore. Aliquam?",
+      paragraphDesktop:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Dignissimos qui nisi, eveniet corrupti, pariatur cum dicta",
       signIn: "Se connecter",
       signUp: "S'inscrire",
     },
@@ -34,14 +37,23 @@ const Homepage = () => {
       slogan3: "Get Healthy",
       paragraph:
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi,quibusdam. Quia harum delectus veniam cupiditate optio nobis beatae alias porro, amet ipsum, natus eum quisquam dolorum nesciunt velit dolore. Aliquam?",
+      paragraphDesktop:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Dignissimos qui nisi, eveniet corrupti, pariatur cum dicta",
       signIn: "Login",
       signUp: "Sign Up",
     },
   };
 
   const translationKey = language || "en";
-  const { slogan1, slogan2, slogan3, paragraph, signIn, signUp } =
-    translations[translationKey];
+  const {
+    slogan1,
+    slogan2,
+    slogan3,
+    paragraph,
+    signIn,
+    signUp,
+    paragraphDesktop,
+  } = translations[translationKey];
   return (
     <div className="homepage-component">
       <div className="mobile-view">
@@ -98,7 +110,8 @@ const Homepage = () => {
             <h1 className="z-10 ml-3 mb-2">
               {slogan1}, {slogan2}
             </h1>
-            <h1 className="z-10 ml-3 mb-2">{slogan3}</h1>
+            <h1 className="z-10 ml-3 mb-4">{slogan3}</h1>
+            <p className="text-base px-20 mb-4">{paragraphDesktop}</p>
           </div>
           <div className="btn-group flex flex-row items-center justify-center mt-5">
             <Link to={"/step/"}>
