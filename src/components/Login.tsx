@@ -5,6 +5,8 @@ import apple from "../assets/img/apple.svg";
 import google from "../assets/img/Google.svg";
 import twitter from "../assets/img/Twitter.svg";
 import pexels from "../assets/img/pexels.jpeg";
+import { auth, provider } from "../firebase"; // Importez 'auth' et 'provider' depuis votre fichier Firebase
+import { signInWithPopup } from "firebase/auth"; // Importez 'signInWithPopup' et 'GoogleAuthProvider' depuis Firebase v9
 
 const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -53,6 +55,17 @@ const Login = () => {
     event.preventDefault();
     alert(`Email: ${formData.email},Password: ${formData.password}`);
   };
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider); // Utilisez 'signInWithPopup' avec 'auth' et 'provider'
+      const user = result.user;
+      console.log(user);
+      // Vous pouvez maintenant stocker des informations supplémentaires dans MongoDB
+    } catch (error) {
+      // Gestion des erreurs
+      console.error(error);
+    }
+  };
   return (
     <div className="login-component">
       <div className="mobile-view">
@@ -72,7 +85,10 @@ const Login = () => {
                   <div className="apple-btn social-btn mr-4 py-3 px-10">
                     <img src={apple} alt="" />
                   </div>
-                  <div className="google-btn social-btn mr-4 py-3 px-10">
+                  <div
+                    className="google-btn social-btn mr-4 py-3 px-10"
+                    onClick={signInWithGoogle}
+                  >
                     <img src={google} alt="" />
                   </div>
                   <div className="twitter-btn social-btn py-3 px-10">
@@ -128,10 +144,13 @@ const Login = () => {
                     </h5>
                   </div>
                   <div className="group-social mt-10 flex flex-row justify-center">
-                    <div className="apple-btn social-btn mr-4 py-3 px-10">
+                    <div className="apple-btn disabled social-btn mr-4 py-3 px-10">
                       <img src={apple} alt="" />
                     </div>
-                    <div className="google-btn social-btn mr-4 py-3 px-10">
+                    <div
+                      className="google-btn social-btn mr-4 py-3 px-10"
+                      onClick={signInWithGoogle}
+                    >
                       <img src={google} alt="" />
                     </div>
                     <div className="twitter-btn social-btn py-3 px-10">

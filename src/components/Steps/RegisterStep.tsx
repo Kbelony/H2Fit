@@ -4,6 +4,8 @@ import bar from "../../assets/img/bar.svg";
 import apple from "../../assets/img/apple.svg";
 import google from "../../assets/img/Google.svg";
 import twitter from "../../assets/img/Twitter.svg";
+import { auth, provider } from "../../firebase"; // Importez 'auth' et 'provider' depuis votre fichier Firebase
+import { signInWithPopup } from "firebase/auth";
 
 const RegisterStep = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -59,6 +61,18 @@ const RegisterStep = () => {
     alert(
       `Name: ${formData.name},FirstName: ${formData.firstname}, Email: ${formData.email},Password: ${formData.password},ConfirmPassword: ${formData.confirmPassword}`
     );
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider); // Utilisez 'signInWithPopup' avec 'auth' et 'provider'
+      const user = result.user;
+      console.log(user);
+      // Vous pouvez maintenant stocker des informations supplémentaires dans MongoDB
+    } catch (error) {
+      // Gestion des erreurs
+      console.error(error);
+    }
   };
 
   return (
@@ -130,7 +144,10 @@ const RegisterStep = () => {
                 <div className="apple-btn social-btn mr-4 py-3 px-10">
                   <img src={apple} alt="" />
                 </div>
-                <div className="google-btn social-btn mr-4 py-3 px-10">
+                <div
+                  className="google-btn social-btn mr-4 py-3 px-10"
+                  onClick={signInWithGoogle}
+                >
                   <img src={google} alt="" />
                 </div>
                 <div className="twitter-btn social-btn py-3 px-10">
