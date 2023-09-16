@@ -1,4 +1,5 @@
-import BackgroundVideo from "../assets/videos/pexels.mp4"; // Assurez-vous d'importer la vidéo dans votre projet
+import BackgroundVideo from "../assets/videos/pexels.mp4";
+import BackgroundVideoDesktop from "../assets/videos/pexels-2.mp4"; // Assurez-vous d'importer la vidéo dans votre projet
 import { useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
 import { Link } from "react-router-dom";
@@ -75,7 +76,35 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div className="desktop-view"></div>
+      <div className="desktop-view">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline // Ajoutez cette ligne
+          preload="auto"
+          className="absolute top-28 left-0 w-full vids object-cover z-0"
+        >
+          <source src={BackgroundVideoDesktop} type="video/mp4" />
+          Votre navigateur ne prend pas en charge la vidéo HTML5.
+        </video>
+
+        <div className="absolute top-25 left-0 w-full h-full flex flex-col justify-start text-white">
+          <div className="slogan text-center text-5xl mt-80">
+            <h1 className="z-10 ml-3 mb-2">
+              {slogan1}, {slogan2}
+            </h1>
+            <h1 className="z-10 ml-3 mb-2">{slogan3}</h1>
+          </div>
+          <div className="btn-group flex flex-row items-center justify-center mt-5">
+            <Link to={"/step/"}>
+              <span className="sign-up-btn px-16 py-4 mr-2 text-center">
+                {signUp}
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

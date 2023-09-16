@@ -70,6 +70,18 @@ body{
     }
 }
 .homepage-component{
+    .slogan,.paragraph,.sign-up-btn,.sign-in-btn{
+        font-family: 'Product-Sans-Regular';
+    }
+    .vids{
+        height: 88vh;
+    }
+    .sign-up-btn{
+        border-radius: 50px;
+        background: #FFF;
+        color: #000000;
+        width: 190px;
+    }
     .mobile-view{
         display: none;
     }
@@ -81,15 +93,6 @@ body{
             display: block!important;
             background: url(./videos/pexels.mp4);
             background-size: cover;
-            .slogan,.paragraph,.sign-up-btn,.sign-in-btn{
-                font-family: 'Product-Sans-Regular';
-            }
-            .sign-up-btn{
-                border-radius: 50px;
-                background: #FFF;
-                color: #000000;
-                width: 190px;
-            }
             .sign-in-btn{
                 border-radius: 50px;
                 border: 2px solid #969696;
