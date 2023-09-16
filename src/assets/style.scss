@@ -74,7 +74,7 @@ body{
         font-family: 'Product-Sans-Regular';
     }
     .vids{
-        height: 88vh;
+        height: 88vh!important;
     }
     .sign-up-btn{
         border-radius: 50px;
@@ -117,7 +117,7 @@ body{
     @media (orientation: landscape) {
         .mobile-view{
             video{
-                height: 140%;
+                height: 160%;
             }
             
             .slogan{
