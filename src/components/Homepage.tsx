@@ -72,7 +72,11 @@ const Homepage = () => {
                 {signUp}
               </span>
             </Link>
-            <span className="sign-in-btn  py-4 ml-2 text-center">{signIn}</span>
+            <Link to={"/login"}>
+              <span className="sign-in-btn  py-4 ml-2 text-center">
+                {signIn}
+              </span>
+            </Link>
           </div>
         </div>
       </div>

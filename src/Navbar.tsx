@@ -47,7 +47,9 @@ const Navbar = () => {
           </li>
           <li className="nav-list-item md:flex md:justify-end">
             <div className="login">
-              <p className="text-white pr-4">{login}</p>
+              <Link to={"/login"}>
+                <p className="text-white pr-4">{login}</p>
+              </Link>
             </div>
             <picture
               className="world"
