@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Logotext from "./assets/img/Logo.svg";
 import world from "./assets/img/world.svg";
 import { LanguageContext } from "./components/LanguageContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "./app/store";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
@@ -18,6 +18,7 @@ const Navbar = () => {
   const user = useSelector((state: RootState) => state.user);
   const userPhoto = user.photo;
   const dispatch = useDispatch();
+  const history = useNavigate();
 
   interface Translations {
     [key: string]: {
@@ -43,6 +44,7 @@ const Navbar = () => {
       .then(() => {
         // Déconnectez l'utilisateur de Google et mettez à jour le Redux store si nécessaire
         dispatch(setSignOutState());
+        history("/");
       })
       .catch((error) => {
         // Gestion des erreurs

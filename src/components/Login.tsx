@@ -78,7 +78,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (user) {
       console.log(user);
       history("/home");
     }
@@ -92,7 +92,26 @@ const Login = () => {
         photo: user.photoURL,
       })
     );
+
+    // Vérifier si user.photoURL n'est pas null avant de le stocker
+    if (user.photoURL) {
+      localStorage.setItem("userPhoto", user.photoURL);
+    }
   };
+
+  useEffect(() => {
+    const storedUserPhoto = localStorage.getItem("userPhoto");
+    if (storedUserPhoto) {
+      // Mettre à jour le Redux store avec les informations de l'utilisateur
+      dispatch(
+        setUserLoginDetails({
+          name: user.name,
+          email: user.email,
+          photo: storedUserPhoto,
+        })
+      );
+    }
+  }, [dispatch]);
 
   return (
     <div className="login-component">
