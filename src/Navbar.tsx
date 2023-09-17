@@ -3,12 +3,16 @@ import Logotext from "./assets/img/Logo.svg";
 import world from "./assets/img/world.svg";
 import { LanguageContext } from "./components/LanguageContext";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./app/store";
 
 const Navbar = () => {
   const languageContext = useContext(LanguageContext);
   const switchLanguage = languageContext?.switchLanguage || (() => {});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { language } = useContext(LanguageContext) || { language: "en" };
+  const userPhoto = useSelector((state: RootState) => state.user.photo);
+
   interface Translations {
     [key: string]: {
       login: string;
@@ -47,9 +51,15 @@ const Navbar = () => {
           </li>
           <li className="nav-list-item md:flex md:justify-end">
             <div className="login">
-              <Link to={"/login"}>
-                <p className="text-white pr-4">{login}</p>
-              </Link>
+              {!userPhoto ? (
+                <Link to={"/login"}>
+                  <p className="text-white pr-4">{login}</p>
+                </Link>
+              ) : (
+                <div className="px-7 img-desktop">
+                  <img className="rounded-full w-12" src={userPhoto} alt="" />
+                </div>
+              )}
             </div>
             <picture
               className="world"

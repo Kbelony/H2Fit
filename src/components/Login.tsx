@@ -9,7 +9,7 @@ import { auth, provider } from "../firebase"; // Importez 'auth' et 'provider' d
 import { User, signInWithPopup, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectUserName,
+  selectUser,
   setSignOutState,
   setUserLoginDetails,
 } from "../features/user/userSlice";
@@ -19,7 +19,7 @@ const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const dispatch = useDispatch();
   const history = useNavigate();
-  const userName = useSelector(selectUserName);
+  const userName = useSelector(selectUser);
 
   interface Translations {
     [key: string]: {
