@@ -78,7 +78,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
       console.log(user);
       history("/home");
     }
