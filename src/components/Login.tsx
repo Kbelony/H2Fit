@@ -1,15 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "./LanguageContext";
 import bar from "../assets/img/bar.svg";
 import apple from "../assets/img/apple.svg";
 import google from "../assets/img/Google.svg";
 import twitter from "../assets/img/Twitter.svg";
 import pexels from "../assets/img/pexels.jpeg";
-import { auth, provider } from "../firebase"; // Importez 'auth' et 'provider' depuis votre fichier Firebase
-import { signInWithPopup } from "firebase/auth"; // Importez 'signInWithPopup' et 'GoogleAuthProvider' depuis Firebase v9
+import { auth, provider } from "../firebase";
+import { User, signInWithPopup } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, setUserLoginDetails } from "../features/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
+  const dispatch = useDispatch();
+  const history = useNavigate();
+  const user = useSelector(selectUser);
 
   interface Translations {
     [key: string]: {
@@ -55,17 +61,58 @@ const Login = () => {
     event.preventDefault();
     alert(`Email: ${formData.email},Password: ${formData.password}`);
   };
+
   const signInWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, provider); // Utilisez 'signInWithPopup' avec 'auth' et 'provider'
-      const user = result.user;
-      console.log(user);
+      await signInWithPopup(auth, provider).then((result) => {
+        setUser(result.user);
+        console.log(result.user);
+        history("/home");
+      });
+
       // Vous pouvez maintenant stocker des informations supplémentaires dans MongoDB
     } catch (error) {
       // Gestion des erreurs
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      history("/home");
+    }
+  }, [user, history]);
+
+  const setUser = (user: User) => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    );
+
+    // Vérifier si user.photoURL n'est pas null avant de le stocker
+    if (user.photoURL) {
+      localStorage.setItem("userPhoto", user.photoURL);
+    }
+  };
+
+  useEffect(() => {
+    const storedUserPhoto = localStorage.getItem("userPhoto");
+    if (storedUserPhoto) {
+      // Mettre à jour le Redux store avec les informations de l'utilisateur
+      dispatch(
+        setUserLoginDetails({
+          name: user.name,
+          email: user.email,
+          photo: storedUserPhoto,
+        })
+      );
+    }
+  }, [dispatch]);
+
   return (
     <div className="login-component">
       <div className="mobile-view">
