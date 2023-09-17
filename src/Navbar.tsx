@@ -3,15 +3,21 @@ import Logotext from "./assets/img/Logo.svg";
 import world from "./assets/img/world.svg";
 import { LanguageContext } from "./components/LanguageContext";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase";
+import { setSignOutState } from "./features/user/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Navbar = () => {
   const languageContext = useContext(LanguageContext);
   const switchLanguage = languageContext?.switchLanguage || (() => {});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpenProfil, setIsDropdownOpenProfil] = useState(false);
   const { language } = useContext(LanguageContext) || { language: "en" };
-  const userPhoto = useSelector((state: RootState) => state.user.photo);
+  const user = useSelector((state: RootState) => state.user);
+  const userPhoto = user.photo;
+  const dispatch = useDispatch();
 
   interface Translations {
     [key: string]: {
@@ -31,6 +37,19 @@ const Navbar = () => {
   const translationKey = language || "en";
   const { login } = translations[translationKey];
 
+  const handleLogout = () => {
+    // Ajoutez cette fonction pour gérer la déconnexion
+    signOut(auth)
+      .then(() => {
+        // Déconnectez l'utilisateur de Google et mettez à jour le Redux store si nécessaire
+        dispatch(setSignOutState());
+      })
+      .catch((error) => {
+        // Gestion des erreurs
+        console.error("Erreur de déconnexion :", error);
+      });
+  };
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -38,6 +57,15 @@ const Navbar = () => {
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
+
+  const toggleDropdownProfil = () => {
+    setIsDropdownOpenProfil(!isDropdownOpenProfil);
+  };
+
+  const closeDropdownProfil = () => {
+    setIsDropdownOpenProfil(false);
+  };
+
   return (
     <nav>
       <div className="navbar-component mb-16">
@@ -50,23 +78,38 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-list-item md:flex md:justify-end">
-            <div className="login">
-              {!userPhoto ? (
+            {!userPhoto ? (
+              <div className="login">
                 <Link to={"/login"}>
                   <p className="text-white pr-4">{login}</p>
                 </Link>
-              ) : (
-                <div className="px-7 img-desktop">
-                  <img className="rounded-full w-12" src={userPhoto} alt="" />
-                </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="px-7 profil-picture">
+                <img
+                  id="profil-button"
+                  aria-expanded={isDropdownOpenProfil}
+                  aria-haspopup="true"
+                  onClick={() => {
+                    toggleDropdownProfil();
+                    closeDropdown();
+                  }}
+                  className="rounded-full w-12"
+                  src={userPhoto}
+                  alt=""
+                />
+              </div>
+            )}
+
             <picture
               className="world"
               id="menu-button"
               aria-expanded={isDropdownOpen}
               aria-haspopup="true"
-              onClick={toggleDropdown}
+              onClick={() => {
+                toggleDropdown();
+                closeDropdownProfil();
+              }}
             >
               <img className="w-7 mr-8 mt-2" src={world} />
             </picture>
@@ -90,6 +133,7 @@ const Navbar = () => {
                 >
                   🇫🇷 Français
                 </a>
+                <hr />
                 <a
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
@@ -100,6 +144,39 @@ const Navbar = () => {
                   }}
                 >
                   🇺🇸 English
+                </a>
+              </div>
+            </div>
+            <div
+              className={`profil-dropdown absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                isDropdownOpenProfil ? "" : "hidden"
+              }`}
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+            >
+              <div className="py-1" role="none">
+                <a
+                  className="text-gray-700 block px-4 py-2 text-sm"
+                  role="menuitem"
+                  id="menu-item-1"
+                  onClick={() => {
+                    closeDropdownProfil();
+                  }}
+                >
+                  Profile
+                </a>
+                <hr />
+                <a
+                  className="text-gray-700 block px-4 py-2 text-sm"
+                  role="menuitem"
+                  id="menu-item-2"
+                  onClick={() => {
+                    handleLogout(); // Appel de la fonction de déconnexion
+                    closeDropdownProfil();
+                  }}
+                >
+                  Déconnexion
                 </a>
               </div>
             </div>

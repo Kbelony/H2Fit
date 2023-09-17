@@ -26,11 +26,18 @@ body{
     }
     .translation-dropdown{
         position: absolute;
-        top: 70px;
+        top: 80px;
         right: 30px;
         z-index: 1000;
+        width: 103px;
     }
-    .img-desktop{
+    .profil-dropdown{
+        position: absolute;
+        top: 80px;
+        right: 120px;
+        z-index: 1000;
+    }
+    .profil-picture{
         margin-top: -13.7px;
         img{
             margin-top: -11px;
@@ -42,6 +49,13 @@ body{
     top: 45px;
     border-right: 3px solid white;
     font-family: 'Product-Sans-Regular';
+    }
+    .profil-picture{
+        position: absolute;
+        margin-right: 80px;
+        top: 52px;
+        border-right: 3px solid white;
+        z-index: 1000;
     }
     .world{
         margin-top: 15px;
@@ -59,14 +73,18 @@ body{
         .logo{
         margin-left: 0px;
         }
+        .profil-picture{
+            top: 47px!important;
+            left: 225px!important;
+        }
         .login{
         margin-right: 0px!important;
-        top: 42px !important;
+        top: 38px !important;
         margin-left: 242px;
         }
         .world{
         margin-left: 323px;
-        margin-top: 11px!important;
+        margin-top: 7px!important;
         }
     }
     @media (max-width: 900px) and (orientation: landscape) {

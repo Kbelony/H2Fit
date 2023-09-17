@@ -5,21 +5,17 @@ import apple from "../assets/img/apple.svg";
 import google from "../assets/img/Google.svg";
 import twitter from "../assets/img/Twitter.svg";
 import pexels from "../assets/img/pexels.jpeg";
-import { auth, provider } from "../firebase"; // Importez 'auth' et 'provider' depuis votre fichier Firebase
-import { User, signInWithPopup, signOut } from "firebase/auth";
+import { auth, provider } from "../firebase";
+import { User, signInWithPopup } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectUser,
-  setSignOutState,
-  setUserLoginDetails,
-} from "../features/user/userSlice";
+import { selectUser, setUserLoginDetails } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const dispatch = useDispatch();
   const history = useNavigate();
-  const userName = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   interface Translations {
     [key: string]: {
@@ -65,32 +61,28 @@ const Login = () => {
     event.preventDefault();
     alert(`Email: ${formData.email},Password: ${formData.password}`);
   };
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-        console.log(user);
-        history("/home");
-      }
-    });
-  }, [userName]);
 
-  const HandleAuth = () => {
-    if (!userName) {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          setUser(result.user);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    } else if (userName) {
-      signOut(auth).then(() => {
-        dispatch(setSignOutState());
-        history("/");
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider).then((result) => {
+        setUser(result.user);
+        console.log(result.user);
+        history("/home");
       });
+
+      // Vous pouvez maintenant stocker des informations supplémentaires dans MongoDB
+    } catch (error) {
+      // Gestion des erreurs
+      console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      console.log(user);
+      history("/home");
+    }
+  }, [user, history]);
 
   const setUser = (user: User) => {
     dispatch(
@@ -123,7 +115,7 @@ const Login = () => {
                   </div>
                   <div
                     className="google-btn social-btn mr-4 py-3 px-10"
-                    onClick={HandleAuth}
+                    onClick={signInWithGoogle}
                   >
                     <img src={google} alt="" />
                   </div>
@@ -185,7 +177,7 @@ const Login = () => {
                     </div>
                     <div
                       className="google-btn social-btn mr-4 py-3 px-10"
-                      onClick={HandleAuth}
+                      onClick={signInWithGoogle}
                     >
                       <img src={google} alt="" />
                     </div>
