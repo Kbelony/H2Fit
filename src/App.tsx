@@ -1,4 +1,5 @@
 import "./assets/style.scss";
+import Home from "./components/Home";
 import Homepage from "./components/Homepage";
 import InfoSteps from "./components/InfoSteps";
 import { LanguageProvider } from "./components/LanguageContext";
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/step" element={<InfoSteps />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </LanguageProvider>
