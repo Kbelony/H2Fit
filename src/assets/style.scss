@@ -329,3 +329,22 @@ body{
 }
 
 }
+.home-component{
+    .mobile-view{
+        display: none;
+    }
+    .desktop-view{
+        display: block;
+    }
+    @media (max-width: 820px) {
+        .mobile-view{
+            display: block!important;
+            .hi-text{
+                font-family: 'Product-Sans-Regular';
+            }
+        }
+        .desktop-view{
+            display: none!important;
+        }
+    }
+}
