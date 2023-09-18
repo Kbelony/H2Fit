@@ -35,6 +35,7 @@ const Home = () => {
     [key: string]: {
       hi: string;
       foryou: string;
+      bodylist: string;
     };
   }
 
@@ -42,15 +43,17 @@ const Home = () => {
     fr: {
       hi: "Bonjour ",
       foryou: "Pour vous",
+      bodylist: "Liste des parties du corps",
     },
     en: {
       hi: "Hey ",
       foryou: "For you",
+      bodylist: "List of body parts",
     },
   };
 
   const translationKey = language || "en";
-  const { hi, foryou } = translations[translationKey];
+  const { hi, foryou, bodylist } = translations[translationKey];
 
   return (
     <div className="home-component ">
@@ -64,14 +67,15 @@ const Home = () => {
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="container md:mt-12 mt-6">
-            <div className="grid grid-cols-2 gap-5 bodypart-container">
+            <div className="text-2xl mb-3 ml-10 text-white">{bodylist}</div>
+            <div className="grid grid-cols-2 gap-6 bodypart-container">
               {exercicesData.map((bodyPart, index) => (
-                <div key={index} className="text-center">
+                <div className="w-26" key={index}>
                   <img
                     src={`/src/assets/img/bodyparts/${bodyPart}.png`} // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
                     alt={bodyPart}
                   />
-                  <h1 className="text-white">{bodyPart}</h1>
+                  <p className="text-white">{bodyPart}</p>
                 </div>
               ))}
             </div>

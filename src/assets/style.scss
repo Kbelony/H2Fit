@@ -342,6 +342,17 @@ body{
             .hi-text{
                 font-family: 'Product-Sans-Regular';
             }
+            .bodypart-container{
+                margin-left: 30px;
+                img{
+                    width: 120px;
+                }
+                p{
+                    width: 120px;
+                    text-align: center;
+                    text-transform: capitalize;
+                }
+            }
         }
         .desktop-view{
             display: none!important;
