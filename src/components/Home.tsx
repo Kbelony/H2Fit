@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../components/LanguageContext";
-// import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import { options, fetchData } from "../utils/fetchData";
@@ -68,16 +68,18 @@ const Home = () => {
         <div className="flex flex-col items-center justify-center">
           <div className="container md:mt-12 mt-6">
             <div className="text-2xl mb-3 ml-10 text-white">{bodylist}</div>
-            <div className="grid grid-cols-2 gap-7 bodypart-container">
+            <div className="grid grid-cols-3 bodypart-container">
               {exercicesData.map((bodyPart, index) => (
-                <div className="w-26" key={index}>
-                  <img
-                    src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart}.png`}
-                    // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                    alt={bodyPart}
-                  />
-                  <p className="text-white text-lg">{bodyPart}</p>
-                </div>
+                <Link to={`/home/${bodyPart}`}>
+                  <div className="mb-5" key={index}>
+                    <img
+                      src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart}.png`}
+                      // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                      alt={bodyPart}
+                    />
+                    <p className="text-white text-base">{bodyPart}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
