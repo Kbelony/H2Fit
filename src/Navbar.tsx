@@ -17,6 +17,7 @@ const Navbar = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const user = useSelector((state: RootState) => state.user);
   const userPhoto = user.photo;
+  const userEmail = user.email;
   const dispatch = useDispatch();
   const history = useNavigate();
 
@@ -80,7 +81,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-list-item md:flex md:justify-end">
-            {!userPhoto ? (
+            {!userEmail ? (
               <div className="login">
                 <Link to={"/login"}>
                   <p className="text-white pr-4">{login}</p>

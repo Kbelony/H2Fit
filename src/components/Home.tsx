@@ -72,7 +72,8 @@ const Home = () => {
               {exercicesData.map((bodyPart, index) => (
                 <div className="w-26" key={index}>
                   <img
-                    src={`/src/assets/img/bodyparts/${bodyPart}.png`} // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                    src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart}.png`}
+                    // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
                     alt={bodyPart}
                   />
                   <p className="text-white">{bodyPart}</p>
