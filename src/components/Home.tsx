@@ -68,7 +68,7 @@ const Home = () => {
         <div className="flex flex-col items-center justify-center">
           <div className="container md:mt-12 mt-6">
             <div className="text-2xl mb-3 ml-10 text-white">{bodylist}</div>
-            <div className="grid grid-cols-2 gap-6 bodypart-container">
+            <div className="grid grid-cols-2 gap-7 bodypart-container">
               {exercicesData.map((bodyPart, index) => (
                 <div className="w-26" key={index}>
                   <img
@@ -76,7 +76,7 @@ const Home = () => {
                     // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
                     alt={bodyPart}
                   />
-                  <p className="text-white">{bodyPart}</p>
+                  <p className="text-white text-lg">{bodyPart}</p>
                 </div>
               ))}
             </div>
