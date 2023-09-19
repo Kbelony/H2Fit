@@ -339,17 +339,47 @@ body{
     @media (max-width: 820px) {
         .mobile-view{
             display: block!important;
-            .hi-text{
+            .hi-text,.container{
                 font-family: 'Product-Sans-Regular';
             }
             .bodypart-container{
                 margin-left: 30px;
                 margin-right: 10px;
                 img{
-                    width: 150px;
+                    width: 110px;
                 }
                 p{
-                    width: 150px;
+                    width: 110px;
+                    text-align: center;
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .desktop-view{
+            display: none!important;
+        }
+    }
+}
+.exercice-list-component{
+    font-family: 'Product-Sans-Regular';
+    .mobile-view{
+        display: none;
+    }
+    .desktop-view{
+        display: block;
+    }
+    @media (max-width: 820px) {
+        .mobile-view{
+            display: block!important;
+            .bodypart-container{
+                margin-left: 20px;
+                margin-right: 10px;
+                img{
+                    width: 110px;
+                    border-radius: 15px;
+                }
+                p{
+                    width: 110px;
                     text-align: center;
                     text-transform: capitalize;
                 }
