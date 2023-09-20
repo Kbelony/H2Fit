@@ -28,6 +28,18 @@ const Home = () => {
       type: string;
     }[]
   >([]);
+  const [selectedArticle, setSelectedArticle] = useState<{
+    title: string;
+    author: string;
+    img_1: string;
+    img_author: string;
+    paragraph_1: string;
+    paragraph_2: string;
+    paragraph_3: string;
+    type: string;
+  } | null>(null);
+
+  console.log(selectedArticle);
 
   const postCollectionRef = collection(db, "articles");
 
@@ -86,13 +98,13 @@ const Home = () => {
     fr: {
       hi: "Bonjour ",
       foryou: "Pour vous",
-      bodylist: "Liste des parties du corps",
+      bodylist: "Choisissez une partie a travailler :",
       articles: "Quelques articles",
     },
     en: {
       hi: "Hey ",
       foryou: "For you",
-      bodylist: "List of body parts",
+      bodylist: "Choose a part to work on : ",
       articles: "Some articles",
     },
   };
@@ -160,22 +172,46 @@ const Home = () => {
                 modules={[Navigation]}
                 className="swiper-container"
               >
-                {postLists.map((articles, index) => (
+                {postLists.map((article, index) => (
                   <SwiperSlide key={index}>
-                    <div className="" key={index}>
-                      <img
-                        src={articles.img_1}
-                        // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                        alt={articles.title}
-                      />
+                    <div
+                      className=""
+                      key={index}
+                      onClick={() => setSelectedArticle(article)}
+                    >
+                      <img src={article.img_1} alt={article.title} />
                       <div className="shadow"></div>
                       <div className="title-div text-sm text-white">
-                        <p>{articles.title}</p>
+                        <p>{article.title}</p>
                       </div>
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
+              {selectedArticle && (
+                <div
+                  className="mini-page text-white px-4 py-10"
+                  style={{
+                    backgroundImage: `url(${selectedArticle.img_1})`,
+                    backgroundSize: "650px 440px", // Ajuste la taille de l'image pour qu'elle couvre la div
+                    backgroundPosition: "center top", // Centre l'image verticalement et la place en haut horizontalement
+                    backgroundRepeat: "no-repeat", // Empêche la répétition de l'image de fond
+                    paddingBottom: "50%", // Réserve la moitié de la hauteur pour l'image de fond
+                  }}
+                >
+                  <button onClick={() => setSelectedArticle(null)}>
+                    Fermer
+                  </button>
+                  <p className="by mt-64 mb-5">by {selectedArticle.author}</p>
+                  <h2 className="text-2xl mb-8">{selectedArticle.title}</h2>
+
+                  <p className="mb-4">{selectedArticle.paragraph_1}</p>
+                  <p className="mb-4">{selectedArticle.paragraph_2}</p>
+                  <p className="mb-4">{selectedArticle.paragraph_3}</p>
+                  <p>Type : {selectedArticle.type}</p>
+                  <div className="shadow-articles"></div>
+                </div>
+              )}
             </div>
           </div>
         </div>

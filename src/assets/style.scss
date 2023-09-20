@@ -396,6 +396,17 @@ body{
                     top: 140px;
                     left: 10px;
                 }
+                .shadow{
+                    background-image: radial-gradient(farthest-side at 73% 21%,transparent,rgb(26,29,41));
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    border-radius: 5px;
+                    height: 210px;
+                    opacity: 0.7;
+                }
                 .swiper-wrapper{
                     margin-left: 10px;
                 }
@@ -424,18 +435,36 @@ body{
                 font-weight: bold;
               }
             }
-            .shadow{
-                background-image: radial-gradient(farthest-side at 73% 21%,transparent,rgb(26,29,41));
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                border-radius: 5px;
-                height: 210px;
-                opacity: 0.7;
-            }
             
+            .mini-page{
+                position: absolute;
+                z-index: 1000;
+                top: 100px;
+                background-color: black;
+                right: 0px;
+                z-index: 1000;
+                border-radius: 15px;
+                min-height: 90%;
+                p{
+                    width: 100%!important;
+                    font-family: 'Product-Sans-Regular';
+                    z-index: 10000;
+                }
+                .by{
+                    color: #9c9796;
+                }
+                .shadow-articles{
+                    background-image: radial-gradient(farthest-side at 73% 21%,transparent,rgb(26,29,41));
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 0.7;
+                    z-index: -2;
+                    border-radius: 15px;
+                }
+            }
         }
         .desktop-view{
             display: none!important;
