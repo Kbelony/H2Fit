@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import { options, fetchData } from "../utils/fetchData";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 const Home = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -55,10 +59,18 @@ const Home = () => {
   const translationKey = language || "en";
   const { hi, foryou, bodylist } = translations[translationKey];
 
+  const settings = {
+    slidesPerView: 3,
+    centeredSlides: false,
+    spaceBetween: 1,
+    loop: false,
+    navigation: true,
+  };
+
   return (
     <div className="home-component ">
       <div className="mobile-view mt-24">
-        <div className="for-you-text text-2xl ml-10 text-white">
+        <div className="for-you-text text-2xl ml-4 text-white">
           <div className="hi-text">
             {hi}
             {userName} 👋
@@ -67,20 +79,28 @@ const Home = () => {
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="container md:mt-12 mt-6">
-            <div className="text-2xl mb-3 ml-10 text-white">{bodylist}</div>
-            <div className="grid grid-cols-3 bodypart-container">
-              {exercicesData.map((bodyPart, index) => (
-                <Link to={`/home/${bodyPart}`}>
-                  <div className="mb-5" key={index}>
-                    <img
-                      src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart}.png`}
-                      // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                      alt={bodyPart}
-                    />
-                    <p className="text-white text-base">{bodyPart}</p>
-                  </div>
-                </Link>
-              ))}
+            <div className="text-2xl mb-3 ml-4 text-white">{bodylist}</div>
+            <div className="flex bodypart-container">
+              <Swiper
+                {...settings}
+                modules={[Navigation]}
+                className="swiper-container"
+              >
+                {exercicesData.map((bodyPart, index) => (
+                  <SwiperSlide key={index}>
+                    <Link to={`/home/${bodyPart}`}>
+                      <div className="mb-5" key={index}>
+                        <img
+                          src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart}.png`}
+                          // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                          alt={bodyPart}
+                        />
+                        <p className="text-white text-base">{bodyPart}</p>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         </div>
