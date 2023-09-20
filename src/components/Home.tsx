@@ -48,15 +48,9 @@ const Home = () => {
     );
   };
 
-  // const getTease = async () => {
-  //   const data = await getDocs(teaseCollectionRef);
-  //   setTeaseList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  // };
-
   useEffect(() => {
     getPosts();
     console.log(postLists);
-    // getTease();
   }, []);
 
   async function fetchExercicesData() {
@@ -84,6 +78,7 @@ const Home = () => {
       hi: string;
       foryou: string;
       bodylist: string;
+      articles: string;
     };
   }
 
@@ -92,16 +87,18 @@ const Home = () => {
       hi: "Bonjour ",
       foryou: "Pour vous",
       bodylist: "Liste des parties du corps",
+      articles: "Quelques articles",
     },
     en: {
       hi: "Hey ",
       foryou: "For you",
       bodylist: "List of body parts",
+      articles: "Some articles",
     },
   };
 
   const translationKey = language || "en";
-  const { hi, foryou, bodylist } = translations[translationKey];
+  const { hi, foryou, bodylist, articles } = translations[translationKey];
 
   const settingsBody = {
     slidesPerView: 3,
@@ -114,7 +111,7 @@ const Home = () => {
   const settingsArticles = {
     slidesPerView: 2,
     centeredSlides: false,
-    spaceBetween: 1,
+    spaceBetween: 25,
     loop: true,
     navigation: true,
   };
@@ -156,8 +153,8 @@ const Home = () => {
             </div>
           </div>
           <div className="container mt-1">
-            <div className="text-2xl mb-3 ml-4 text-white">{bodylist}</div>
-            <div className="flex bodypart-container">
+            <div className="text-2xl mb-3 ml-4 text-white">{articles}</div>
+            <div className="flex articles-container">
               <Swiper
                 {...settingsArticles}
                 modules={[Navigation]}
@@ -165,16 +162,17 @@ const Home = () => {
               >
                 {postLists.map((articles, index) => (
                   <SwiperSlide key={index}>
-                    <Link to={`/home/${articles}`}>
-                      <div className="mb-5" key={index}>
-                        <img
-                          src={articles.img_1}
-                          // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                          alt={articles.title}
-                        />
-                        <p className="text-white text-base">{articles.title}</p>
+                    <div className="" key={index}>
+                      <img
+                        src={articles.img_1}
+                        // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                        alt={articles.title}
+                      />
+                      <div className="shadow"></div>
+                      <div className="title-div text-sm text-white">
+                        <p>{articles.title}</p>
                       </div>
-                    </Link>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>

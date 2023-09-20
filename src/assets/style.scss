@@ -353,31 +353,89 @@ body{
                     text-align: center;
                     text-transform: capitalize;
                 }
+                .swiper-button-prev{
+                    left: 19px;
+                  top: 61px;
+                  position: absolute;
+                  height: 28px;
+                  border-radius: 50%;
+                  background-color: #D9D9D9;
+                  }
+                  .swiper-button-disabled{
+                    display: none;
+                  }
+                  .swiper-button-next{
+                    left: 93%;
+        top: 64px;
+                  position: absolute;
+                  height: 28px;
+                  border-radius: 50%;
+                  background-color: #D9D9D9;
+                  }
+              .swiper-button-prev:after,.swiper-button-next:after{
+                font-size: 20px;
+                color: black;
+                font-weight: bold;
+              }
             }
-            .swiper-button-prev{
-                left: 19px;
-              top: 61px;
-              position: absolute;
-              height: 28px;
-              border-radius: 50%;
-              background-color: #D9D9D9;
+            .articles-container{
+                margin-left: 10px;
+                margin-right: 10px;
+                img{
+                    width: 186px;
+                    height: 210px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+                p{
+                    width: 170px;
+                    text-transform: capitalize;
+                }
+                .title-div{
+                    position: absolute;
+                    top: 140px;
+                    left: 10px;
+                }
+                .swiper-wrapper{
+                    margin-left: 10px;
+                }
+                .swiper-button-prev{
+                    left: 19px;
+                  top: 111px;
+                  position: absolute;
+                  height: 28px;
+                  border-radius: 50%;
+                  background-color: #D9D9D9;
+                  }
+                  .swiper-button-disabled{
+                    display: none;
+                  }
+                  .swiper-button-next{
+                    left: 93%;
+        top: 111px;
+                  position: absolute;
+                  height: 28px;
+                  border-radius: 50%;
+                  background-color: #D9D9D9;
+                  }
+              .swiper-button-prev:after,.swiper-button-next:after{
+                font-size: 20px;
+                color: black;
+                font-weight: bold;
               }
-              .swiper-button-disabled{
-                display: none;
-              }
-              .swiper-button-next{
-                left: 93%;
-    top: 64px;
-              position: absolute;
-              height: 28px;
-              border-radius: 50%;
-              background-color: #D9D9D9;
-              }
-          .swiper-button-prev:after,.swiper-button-next:after{
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-          }
+            }
+            .shadow{
+                background-image: radial-gradient(farthest-side at 73% 21%,transparent,rgb(26,29,41));
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                border-radius: 5px;
+                height: 210px;
+                opacity: 0.7;
+            }
+            
         }
         .desktop-view{
             display: none!important;
