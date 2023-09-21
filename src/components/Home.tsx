@@ -195,7 +195,7 @@ const Home = () => {
                   className="mini-page text-white "
                   style={{
                     backgroundImage: `url(${selectedArticle.img_1})`,
-                    backgroundSize: "650px 440px", // Ajuste la taille de l'image pour qu'elle couvre la div
+                    backgroundSize: "560px 370px", // Ajuste la taille de l'image pour qu'elle couvre la div
                     backgroundPosition: "center top", // Centre l'image verticalement et la place en haut horizontalement
                     backgroundRepeat: "no-repeat", // Empêche la répétition de l'image de fond
                     paddingBottom: "50%", // Réserve la moitié de la hauteur pour l'image de fond
@@ -212,7 +212,7 @@ const Home = () => {
                   />
 
                   <div className="paragraph px-5 mb-5">
-                    <p className="by mt-80 mb-4 pt-6">
+                    <p className="by mt-48 mb-4 pt-6">
                       by {selectedArticle.author}
                     </p>
                     <h2 className="text-3xl mb-6">{selectedArticle.title}</h2>
