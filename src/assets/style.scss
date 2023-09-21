@@ -438,13 +438,17 @@ body{
             
             .mini-page{
                 position: absolute;
-                z-index: 1000;
-                top: 100px;
+                top: 42px;
                 background-color: black;
                 right: 0px;
-                z-index: 1000;
+                z-index: 100000;
                 border-radius: 15px;
                 min-height: 90%;
+                height: 10px;
+                img{
+                    width: 3rem!important;
+                    height:  3rem!important;
+                }
                 p{
                     width: 100%!important;
                     font-family: 'Product-Sans-Regular';
@@ -452,6 +456,22 @@ body{
                 }
                 .by{
                     color: #9c9796;
+                }
+                .paragraph{
+                    background-color: #242424;
+                    border-radius: 15px 15px 0px 0px;
+                    min-height: 85%;
+                    a{
+                        color: #4152EF;
+                    }
+                    span{
+                        background: white;
+                        border-radius: 50px;
+                        font-family: 'Product-Sans-Regular';
+                        color: #000000!important;
+                        position: fixed;
+                        top: 778px;
+                    }
                 }
                 .shadow-articles{
                     background-image: radial-gradient(farthest-side at 73% 21%,transparent,rgb(26,29,41));

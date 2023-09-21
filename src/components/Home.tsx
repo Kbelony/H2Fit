@@ -10,12 +10,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import close from "../assets/img/close-btn.svg";
 
 const Home = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const user = useSelector((state: RootState) => state.user);
   const userName = user.name;
   const [exercicesData, setExercicesData] = useState([]);
+  const [showMore, setShowMore] = useState(false);
   const [postLists, setPostList] = useState<
     {
       title: string;
@@ -99,13 +101,13 @@ const Home = () => {
       hi: "Bonjour ",
       foryou: "Pour vous",
       bodylist: "Choisissez une partie a travailler :",
-      articles: "Quelques articles",
+      articles: "Quelques articles :",
     },
     en: {
       hi: "Hey ",
       foryou: "For you",
       bodylist: "Choose a part to work on : ",
-      articles: "Some articles",
+      articles: "Some articles :",
     },
   };
 
@@ -190,7 +192,7 @@ const Home = () => {
               </Swiper>
               {selectedArticle && (
                 <div
-                  className="mini-page text-white px-4 py-10"
+                  className="mini-page text-white "
                   style={{
                     backgroundImage: `url(${selectedArticle.img_1})`,
                     backgroundSize: "650px 440px", // Ajuste la taille de l'image pour qu'elle couvre la div
@@ -199,16 +201,49 @@ const Home = () => {
                     paddingBottom: "50%", // Réserve la moitié de la hauteur pour l'image de fond
                   }}
                 >
-                  <button onClick={() => setSelectedArticle(null)}>
-                    Fermer
-                  </button>
-                  <p className="by mt-64 mb-5">by {selectedArticle.author}</p>
-                  <h2 className="text-2xl mb-8">{selectedArticle.title}</h2>
+                  <img
+                    className="w-12 ml-4 mt-4"
+                    onClick={() => {
+                      setSelectedArticle(null);
+                      setShowMore(false);
+                    }}
+                    src={close}
+                    alt=""
+                  />
 
-                  <p className="mb-4">{selectedArticle.paragraph_1}</p>
-                  <p className="mb-4">{selectedArticle.paragraph_2}</p>
-                  <p className="mb-4">{selectedArticle.paragraph_3}</p>
-                  <p>Type : {selectedArticle.type}</p>
+                  <div className="paragraph px-5 mb-5">
+                    <p className="by mt-80 mb-4 pt-6">
+                      by {selectedArticle.author}
+                    </p>
+                    <h2 className="text-3xl mb-6">{selectedArticle.title}</h2>
+                    <p className="mb-4">
+                      {showMore
+                        ? selectedArticle.paragraph_1
+                        : selectedArticle.paragraph_1.slice(0, 240) +
+                          "..."}{" "}
+                      <a
+                        className="ml-4"
+                        onClick={() => setShowMore(!showMore)}
+                      >
+                        {" "}
+                        More
+                      </a>
+                    </p>
+                    {showMore && (
+                      <>
+                        <p className="mb-4">{selectedArticle.paragraph_2}</p>
+                        <p className="mb-4">{selectedArticle.paragraph_3}</p>
+                      </>
+                    )}
+                    <div className="mt-8 mb-16">
+                      <Link to={`/home/${selectedArticle.type}`}>
+                        <span className="px-16 ml-10 py-4">
+                          Start workout {selectedArticle.type}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+
                   <div className="shadow-articles"></div>
                 </div>
               )}
