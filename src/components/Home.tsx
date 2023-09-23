@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import close from "../assets/img/close-btn.svg";
+// import BottomBar from "./BottomBar";
 
 const Home = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -30,6 +31,21 @@ const Home = () => {
       type: string;
     }[]
   >([]);
+  const [selectionLists, setSelectionList] = useState<
+    {
+      title: string;
+      description: string;
+      img_1: string;
+      exo_1: string;
+      exo_2_img: string;
+      exo_2: string;
+      exo_3_img: string;
+      exo_3: string;
+      exo_1_img: string;
+      type: string;
+      id: string;
+    }[]
+  >([]);
   const [selectedArticle, setSelectedArticle] = useState<{
     title: string;
     author: string;
@@ -41,9 +57,28 @@ const Home = () => {
     type: string;
   } | null>(null);
 
-  console.log(selectedArticle);
-
   const postCollectionRef = collection(db, "articles");
+  const selectionCollectionRef = collection(db, "selection");
+
+  const getSelection = async () => {
+    const data = await getDocs(selectionCollectionRef);
+    setSelectionList(
+      data.docs.map((doc) => ({
+        ...doc.data(),
+        title: doc.data().title,
+        description: doc.data().description,
+        img_1: doc.data().img_1,
+        exo_1: doc.data().exo_1,
+        exo_1_img: doc.data().exo_1_img,
+        exo_2: doc.data().exo_2,
+        exo_2_img: doc.data().exo_2_img,
+        exo_3: doc.data().exo_3,
+        exo_3_img: doc.data().exo_3_img,
+        type: doc.data().type,
+        id: doc.data().id,
+      }))
+    );
+  };
 
   const getPosts = async () => {
     const data = await getDocs(postCollectionRef);
@@ -64,7 +99,8 @@ const Home = () => {
 
   useEffect(() => {
     getPosts();
-    console.log(postLists);
+    getSelection();
+    console.log(selectionLists);
   }, []);
 
   async function fetchExercicesData() {
@@ -93,6 +129,8 @@ const Home = () => {
       foryou: string;
       bodylist: string;
       articles: string;
+      selection: string;
+      level: string;
     };
   }
 
@@ -102,17 +140,22 @@ const Home = () => {
       foryou: "Pour vous",
       bodylist: "Choisissez une partie a travailler :",
       articles: "Quelques articles :",
+      selection: "Sélection d'exercices :",
+      level: "Niveau : Débutant",
     },
     en: {
       hi: "Hey ",
       foryou: "For you",
       bodylist: "Choose a part to work on : ",
       articles: "Some articles :",
+      selection: "A selection of exercises:",
+      level: "Level : Beginner",
     },
   };
 
   const translationKey = language || "en";
-  const { hi, foryou, bodylist, articles } = translations[translationKey];
+  const { hi, foryou, bodylist, articles, selection, level } =
+    translations[translationKey];
 
   const settingsBody = {
     slidesPerView: 3,
@@ -124,6 +167,14 @@ const Home = () => {
 
   const settingsArticles = {
     slidesPerView: 2,
+    centeredSlides: false,
+    spaceBetween: 25,
+    loop: true,
+    navigation: true,
+  };
+
+  const settingsSelection = {
+    slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 25,
     loop: true,
@@ -166,7 +217,7 @@ const Home = () => {
               </Swiper>
             </div>
           </div>
-          <div className="container mt-1">
+          <div className="container mt-1 mb-4">
             <div className="text-2xl mb-3 ml-4 text-white">{articles}</div>
             <div className="flex articles-container">
               <Swiper
@@ -195,7 +246,7 @@ const Home = () => {
                   className="mini-page text-white "
                   style={{
                     backgroundImage: `url(${selectedArticle.img_1})`,
-                    backgroundSize: "560px 370px", // Ajuste la taille de l'image pour qu'elle couvre la div
+                    backgroundSize: "540px 370px", // Ajuste la taille de l'image pour qu'elle couvre la div
                     backgroundPosition: "center top", // Centre l'image verticalement et la place en haut horizontalement
                     backgroundRepeat: "no-repeat", // Empêche la répétition de l'image de fond
                     paddingBottom: "50%", // Réserve la moitié de la hauteur pour l'image de fond
@@ -219,7 +270,7 @@ const Home = () => {
                     <p className="mb-4">
                       {showMore
                         ? selectedArticle.paragraph_1
-                        : selectedArticle.paragraph_1.slice(0, 240) +
+                        : selectedArticle.paragraph_1.slice(0, 200) +
                           "..."}{" "}
                       <a
                         className="ml-4"
@@ -237,7 +288,7 @@ const Home = () => {
                     )}
                     <div className="mt-8 mb-16">
                       <Link to={`/home/${selectedArticle.type}`}>
-                        <span className="px-16 ml-10 py-4">
+                        <span className="px-16 ml-14 py-4">
                           Start workout {selectedArticle.type}
                         </span>
                       </Link>
@@ -247,6 +298,31 @@ const Home = () => {
                   <div className="shadow-articles"></div>
                 </div>
               )}
+            </div>
+          </div>
+          <div className="container mt-1 mb-4">
+            <div className="text-2xl mb-3 ml-4 text-white">{selection}</div>
+            <div className="flex selection-container">
+              <Swiper
+                {...settingsSelection}
+                modules={[Navigation]}
+                className="swiper-container"
+              >
+                {selectionLists.map((selection, index) => (
+                  <SwiperSlide key={index}>
+                    <Link to={`/selection/${selection.id}`}>
+                      <div className="" key={index}>
+                        <img src={selection.img_1} alt={selection.title} />
+                        <div className="shadow"></div>
+                        <div className="title-div text-2xl text-white">
+                          <p>{selection.title}</p>
+                          <p className="text-sm">{level}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         </div>
