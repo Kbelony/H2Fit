@@ -1,5 +1,6 @@
 import "./assets/style.scss";
 import BodyDetails from "./components/BodyDetails";
+import SelectionDetails from "./components/Details/SelectionDetails";
 import Home from "./components/Home";
 import Homepage from "./components/Homepage";
 import InfoSteps from "./components/InfoSteps";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/home/:id/" element={<BodyDetails />} />
+            <Route path="/selection/:id/" element={<SelectionDetails />} />
           </Routes>
         </BrowserRouter>
       </LanguageProvider>
