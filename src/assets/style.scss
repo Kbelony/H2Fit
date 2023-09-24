@@ -636,7 +636,6 @@ body{
     }
 }
 .selection-details-components {
-    font-family: 'Product-Sans-Regular';
 
     .mobile-view {
         display: none;
@@ -649,6 +648,82 @@ body{
     @media (max-width: 820px) {
         .mobile-view {
             display: block !important;
+            .back-button {
+                    position: absolute;
+                    z-index: 100;
+                    top: 110px;
+                }
+            
+                .shadow {
+                    background-image: radial-gradient(farthest-side at 73% 21%, transparent, rgb(26, 29, 41));
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    border-radius: 5px;
+                    height: 255px;
+                    opacity: 0.7;
+                }
+            
+                .text-paragraph {
+                    position: relative;
+                    top: 240px;
+                    background-color: #242424;
+                    border-radius: 15px 15px 0px 0px;
+            
+                    .group-exercices {
+                        img {
+                            width: 100px;
+                            border-radius: 15px;
+                        }
+            
+                        .exercice-1 {
+                            .type {
+                                position: absolute;
+                                top: 223px;
+                                left: 85px;
+            
+                                img {
+                                    width: 55px;
+            
+                                }
+                            }
+                        }
+            
+                        .exercice-2 {
+                            .type {
+                                position: absolute;
+                                top: 384px;
+                                left: 85px;
+            
+                                img {
+                                    width: 55px;
+            
+                                }
+                            }
+                        }
+            
+                        .exercice-3 {
+                            .type {
+                                position: absolute;
+                                top: 551px;
+                                left: 85px;
+            
+                                img {
+                                    width: 55px;
+            
+                                }
+                            }
+                        }
+            
+            
+                    }
+            
+                    p {
+                        font-family: 'Product-Sans-Regular';
+                    }
+                }
         }
 
         .desktop-view {
