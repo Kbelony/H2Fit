@@ -606,7 +606,7 @@ body{
     }
 }
 .exercice-list-component{
-    font-family: 'Product-Sans-Regular';
+    
     .mobile-view{
         display: none;
     }
@@ -623,10 +623,14 @@ body{
                     width: 110px;
                     border-radius: 15px;
                 }
+                                                                                                                                                                                                                                                                .plus {
+                                                                                                                                                                                                                                                                    width: 40px;
+                                                                                                                                                                                                                                                                }
                 p{
                     width: 110px;
                     text-align: center;
                     text-transform: capitalize;
+                    font-family: 'Product-Sans-Regular';
                 }
             }
         }
