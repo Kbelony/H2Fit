@@ -735,3 +735,29 @@ body{
         }
     }
 }
+.details-components {
+    .mobile-view {
+        display: none;
+    }
+
+    .desktop-view {
+        display: block;
+    }
+
+    @media (max-width: 820px) {
+        .mobile-view {
+            display: block !important;
+
+            .details-container {
+                img {
+                    width: 105px;
+                }
+            }
+
+        }
+
+        .desktop-view {
+            display: none !important;
+        }
+    }
+}
