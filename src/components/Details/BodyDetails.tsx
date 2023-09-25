@@ -76,7 +76,7 @@ const BodyDetails = () => {
           <div className="container md:mt-12 mt-6">
             <div className="text-2xl mb-6 ml-4 text-white">
               {bodylist}
-              &nbsp;{bodyPartURL}
+              &nbsp;{bodyPartURL.replace(/%20/g, " ")}
             </div>
             <div className="flex flex-col bodypart-container">
               {exercicesData.slice(0, 24).map((bodyPart, index) => (
