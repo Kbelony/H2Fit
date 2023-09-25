@@ -1,5 +1,7 @@
 import "./assets/style.scss";
-import BodyDetails from "./components/BodyDetails";
+import BodyDetails from "./components/Details/BodyDetails";
+import ExcerciceDetails from "./components/Details/ExcerciceDetails";
+
 import SelectionDetails from "./components/Details/SelectionDetails";
 import Home from "./components/Home";
 import Homepage from "./components/Homepage";
@@ -21,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/home/:id/" element={<BodyDetails />} />
+            <Route path="/exercice/:id/" element={<ExcerciceDetails />} />
             <Route path="/selection/:id/" element={<SelectionDetails />} />
           </Routes>
         </BrowserRouter>
