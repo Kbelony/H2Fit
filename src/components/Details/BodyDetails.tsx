@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { LanguageContext } from "../components/LanguageContext";
+import { LanguageContext } from "../LanguageContext";
 import { Link, useNavigate } from "react-router-dom";
-import { options, fetchData } from "../utils/fetchData";
-import back from "../assets/img/left-arrow.svg";
+import { options, fetchData } from "../../utils/fetchData";
+import back from "../../assets/img/left-arrow.svg";
+import plus from "../../assets/img/Plus.svg";
 
 const BodyDetails = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -73,29 +74,29 @@ const BodyDetails = () => {
             <p className="text-base mt-3">{navigate}</p>
           </div>
           <div className="container md:mt-12 mt-6">
-            <div className="text-2xl mb-3 ml-4 text-white">
+            <div className="text-2xl mb-6 ml-4 text-white">
               {bodylist}
               &nbsp;{bodyPartURL}
             </div>
-            <div className="grid grid-cols-3 gap-3 bodypart-container">
+            <div className="flex flex-col bodypart-container">
               {exercicesData.slice(0, 24).map((bodyPart, index) => (
-                <Link to={`/home/exercice/${bodyPart.name}`}>
-                  <div className="mb-6" key={index}>
+                <Link to={`/exercice/${bodyPart.name}`}>
+                  <div className="flex flex-row mb-6" key={index}>
                     <img
                       src={bodyPart.gifUrl}
                       // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
                     />
                     <p
-                      className="text-white text-lg"
+                      className="text-white ml-8 mt-8 mr-20 text-lg"
                       style={{
                         overflow: "hidden",
                         whiteSpace: "nowrap",
                         textOverflow: "ellipsis",
-                        maxWidth: "150px",
                       }}
                     >
                       {bodyPart.name}
                     </p>
+                    <img className="plus" src={plus} alt="" />
                   </div>
                 </Link>
               ))}
