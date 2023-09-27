@@ -8,7 +8,7 @@ const ExcerciceDetails = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const history = useNavigate();
   const [exercicesData, setExercicesData] = useState<
-    { name: string; gifUrl: string }[]
+    { name: string; gifUrl: string; instructions: string[]; bodyPart: string }[]
   >([]);
   const [exercicesVideosData, setExercicesVideosData] = useState<
     {
@@ -61,8 +61,8 @@ const ExcerciceDetails = () => {
   interface Translations {
     [key: string]: {
       hi: string;
-      foryou: string;
-      bodylist: string;
+      explanation: string;
+      shortDescription: string;
       navigate: string;
     };
   }
@@ -70,20 +70,21 @@ const ExcerciceDetails = () => {
   const translations: Translations = {
     fr: {
       hi: "Bonjour ",
-      foryou: "Pour vous",
-      bodylist: "Liste d'exercices",
+      explanation: "Explication",
+      shortDescription: "Cette exercice permet de travailler le ",
       navigate: "Page précédente",
     },
     en: {
       hi: "Hey ",
-      foryou: "For you",
-      bodylist: "Exercise list",
+      explanation: "Explanation",
+      shortDescription: "This exercise allows you to work on the  ",
       navigate: "Previous page",
     },
   };
 
   const translationKey = language || "en";
-  const { bodylist, navigate } = translations[translationKey];
+  const { explanation, shortDescription, navigate } =
+    translations[translationKey];
 
   return (
     <div className="details-components">
@@ -97,33 +98,64 @@ const ExcerciceDetails = () => {
             <p className="text-base mt-3">{navigate}</p>
           </div>
           <div className="container md:mt-12 mt-6">
-            <div className="text-2xl mb-6 ml-4 text-white">
-              {bodylist}
-              &nbsp;{bodyPartURL.replace(/%20/g, " ")}
-            </div>
             <div className="flex flex-col details-container">
-              {exercicesData.map((bodyPart, index) => (
-                <div className="flex flex-row mb-6" key={index}>
-                  <img
-                    src={bodyPart.gifUrl}
-                    // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                  />
-                  <p className="text-white ml-8 mt-8 mr-20 text-lg">
-                    {bodyPart.name}
-                  </p>
+              {exercicesVideosData.slice(0, 1).map((videos) => (
+                <div
+                  className="text-white"
+                  style={{
+                    backgroundImage: `url(${videos.video.thumbnails[1]?.url})`,
+                    backgroundSize: "cover", // Ajuste la taille de l'image pour qu'elle couvre la div
+                    backgroundPosition: "center top", // Centre l'image verticalement et la place en haut horizontalement
+                    backgroundRepeat: "no-repeat", // Empêche la répétition de l'image de fond
+                    paddingBottom: "80%",
+                    position: "relative",
+                    top: "-73px",
+                    zIndex: "-10", // Réserve la moitié de la hauteur pour l'image de fond
+                  }}
+                >
+                  <div className="shadow"></div>
                 </div>
               ))}
-              {exercicesVideosData.slice(0, 4).map((videos, index) => (
-                <div className="flex flex-row mb-6" key={index}>
-                  <img
-                    src={videos.video.thumbnails[1]?.url}
-                    // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                  />
-                  <p className="text-white ml-8 mt-8 mr-20 text-lg">
-                    {videos.video.channelName}
-                  </p>
-                </div>
-              ))}
+              <div className="grey-background pt-8">
+                {exercicesData.map((bodyPart, index) => (
+                  <div className="flex flex-col mb-6" key={index}>
+                    <div className="text-2xl mb-6 ml-4 text-white">
+                      <h5 className="mb-2 capitalize">{bodyPart.name}</h5>
+                      <p className="text-base">
+                        {shortDescription} {bodyPart.bodyPart}
+                      </p>
+                    </div>
+                    <div className="gif-exercice items-center justify-center">
+                      <img className="ml-20" src={bodyPart.gifUrl} />
+                    </div>
+                    <div className="type">
+                      <img
+                        src={`https://raw.githubusercontent.com/Kbelony/H2Fit/main/src/assets/img/bodyparts/${bodyPart.bodyPart}.png`}
+                        alt=""
+                      />
+                    </div>
+                    <h5 className="text-2xl mt-10 mb-3 ml-4 text-white">
+                      {explanation}
+                    </h5>
+                    <div className="px-4 instructions text-white">
+                      {bodyPart.instructions.map((instruction, index) => (
+                        <p key={index}>{instruction}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                {exercicesVideosData.slice(0, 4).map((videos, index) => (
+                  <div className="flex flex-row mb-6" key={index}>
+                    <img
+                      src={videos.video.thumbnails[1]?.url}
+                      // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                    />
+                    <p className="text-white ml-8 mt-8 mr-20 text-lg">
+                      {videos.video.channelName}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

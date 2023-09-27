@@ -749,8 +749,44 @@ body{
             display: block !important;
 
             .details-container {
-                img {
-                    width: 105px;
+                p {
+                        font-family: 'Product-Sans-Regular';
+                    }
+                
+                    .grey-background {
+                        background: #242424;
+                        position: absolute;
+                        top: 319px;
+                        border-radius: 15px 15px 0px 0px;
+                    }
+                
+                    .shadow {
+                        background-image: radial-gradient(farthest-side at 73% 21%, transparent, rgb(26, 29, 41));
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        height: 228px;
+                        opacity: 0.7;
+                    }
+                
+                    .gif-exercice {
+                        img {
+                            width: 255px;
+                            border-radius: 15px;
+                        }
+                
+                
+                    }
+                
+                    .type {
+                        position: absolute;
+                        top: 325px;
+                        left: 289px;
+                                img {
+                                    width: 80px;
+                                    }
                 }
             }
 
