@@ -1,8 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../LanguageContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { options, fetchData, optionsYTB } from "../../utils/fetchData";
 import back from "../../assets/img/left-arrow.svg";
+import play from "../../assets/img/play-button.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 const ExcerciceDetails = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -12,7 +17,11 @@ const ExcerciceDetails = () => {
   >([]);
   const [exercicesVideosData, setExercicesVideosData] = useState<
     {
-      video: { channelName: string; thumbnails: { url: string }[] };
+      video: {
+        channelName: string;
+        videoId: string;
+        thumbnails: { url: string }[];
+      };
       title: string;
     }[]
   >([]);
@@ -60,8 +69,8 @@ const ExcerciceDetails = () => {
 
   interface Translations {
     [key: string]: {
-      hi: string;
       explanation: string;
+      vidsText: string;
       shortDescription: string;
       navigate: string;
     };
@@ -69,13 +78,13 @@ const ExcerciceDetails = () => {
 
   const translations: Translations = {
     fr: {
-      hi: "Bonjour ",
+      vidsText: "Voici des vidéos d’explication de l’exercice :",
       explanation: "Explication",
       shortDescription: "Cette exercice permet de travailler le ",
       navigate: "Page précédente",
     },
     en: {
-      hi: "Hey ",
+      vidsText: "Here are a few videos explaining the exercise :",
       explanation: "Explanation",
       shortDescription: "This exercise allows you to work on the  ",
       navigate: "Previous page",
@@ -83,8 +92,16 @@ const ExcerciceDetails = () => {
   };
 
   const translationKey = language || "en";
-  const { explanation, shortDescription, navigate } =
+  const { vidsText, explanation, shortDescription, navigate } =
     translations[translationKey];
+
+  const settingsVideos = {
+    slidesPerView: 1,
+    centeredSlides: false,
+    spaceBetween: 25,
+    loop: true,
+    navigation: true,
+  };
 
   return (
     <div className="details-components">
@@ -144,17 +161,32 @@ const ExcerciceDetails = () => {
                     </div>
                   </div>
                 ))}
-                {exercicesVideosData.slice(0, 4).map((videos, index) => (
-                  <div className="flex flex-row mb-6" key={index}>
-                    <img
-                      src={videos.video.thumbnails[1]?.url}
-                      // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
-                    />
-                    <p className="text-white ml-8 mt-8 mr-20 text-lg">
-                      {videos.video.channelName}
-                    </p>
-                  </div>
-                ))}
+                <h5 className="text-2xl mb-4 ml-4 text-white">{vidsText}</h5>
+                <div className="vids-container">
+                  <Swiper
+                    {...settingsVideos}
+                    modules={[Navigation]}
+                    className="swiper-container"
+                  >
+                    {exercicesVideosData.slice(0, 4).map((videos, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="flex flex-row mb-6" key={index}>
+                          <img
+                            src={videos.video.thumbnails[1]?.url}
+                            // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                          />
+                        </div>
+                        <div className="shadowVids"></div>
+                        <Link
+                          target="_blank"
+                          to={`https://www.youtube.com/watch?v=${videos.video.videoId}`}
+                        >
+                          <img className="play-btn" src={play} />
+                        </Link>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               </div>
             </div>
           </div>
