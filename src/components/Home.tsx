@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import close from "../assets/img/close-btn.svg";
+import play from "../assets/img/play-button.svg";
 // import BottomBar from "./BottomBar";
 
 const Home = () => {
@@ -29,6 +30,14 @@ const Home = () => {
       paragraph_2: string;
       paragraph_3: string;
       type: string;
+    }[]
+  >([]);
+  const [vidsLists, setVidsList] = useState<
+    {
+      title: string;
+      link: string;
+      thumbnails: string;
+      videoId: string;
     }[]
   >([]);
   const [selectionLists, setSelectionList] = useState<
@@ -59,6 +68,7 @@ const Home = () => {
 
   const postCollectionRef = collection(db, "articles");
   const selectionCollectionRef = collection(db, "selection");
+  const vidsCollectionRef = collection(db, "vids");
 
   const getSelection = async () => {
     const data = await getDocs(selectionCollectionRef);
@@ -97,9 +107,23 @@ const Home = () => {
     );
   };
 
+  const getVids = async () => {
+    const data = await getDocs(vidsCollectionRef);
+    setVidsList(
+      data.docs.map((doc) => ({
+        ...doc.data(),
+        title: doc.data().title,
+        link: doc.data().link,
+        thumbnails: doc.data().thumbnails,
+        videoId: doc.data().videoId,
+      }))
+    );
+  };
+
   useEffect(() => {
     getPosts();
     getSelection();
+    getVids();
     console.log(selectionLists);
   }, []);
 
@@ -181,6 +205,14 @@ const Home = () => {
     navigation: true,
   };
 
+  const settingsVideos = {
+    slidesPerView: 1,
+    centeredSlides: false,
+    spaceBetween: 25,
+    loop: true,
+    navigation: true,
+  };
+
   return (
     <div className="home-component ">
       <div className="mobile-view mt-24">
@@ -191,8 +223,36 @@ const Home = () => {
           </div>
           {foryou}
         </div>
+        <div className="vids-container mt-6">
+          <Swiper
+            {...settingsVideos}
+            modules={[Navigation]}
+            className="swiper-container"
+          >
+            {vidsLists.map((videos, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-row mb-6" key={index}>
+                  <img
+                    src={videos.thumbnails}
+                    // Assurez-vous d'avoir les images correspondantes dans votre répertoire public
+                  />
+                </div>
+                <div className="shadowVids"></div>
+                <div className="title-div text-base ml-4 text-white">
+                  {videos.title}
+                </div>
+                <Link
+                  target="_blank"
+                  to={`https://www.youtube.com/watch?v=${videos.videoId}`}
+                >
+                  <img className="play-btn" src={play} />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="container mt-6">
+          <div className="container mt-2">
             <div className="text-2xl mb-3 ml-4 text-white">{bodylist}</div>
             <div className="flex bodypart-container">
               <Swiper
@@ -230,7 +290,10 @@ const Home = () => {
                     <div
                       className=""
                       key={index}
-                      onClick={() => setSelectedArticle(article)}
+                      onClick={() => {
+                        setSelectedArticle(article);
+                        window.scrollTo(0, 0);
+                      }}
                     >
                       <img src={article.img_1} alt={article.title} />
                       <div className="shadow"></div>
@@ -288,7 +351,7 @@ const Home = () => {
                     )}
                     <div className="mt-8 mb-16">
                       <Link to={`/home/${selectedArticle.type}`}>
-                        <span className="px-16 ml-14 py-4">
+                        <span className="px-16 py-4">
                           Start workout {selectedArticle.type}
                         </span>
                       </Link>
@@ -315,7 +378,7 @@ const Home = () => {
                         <img src={selection.img_1} alt={selection.title} />
                         <div className="shadow"></div>
                         <div className="title-div text-2xl text-white">
-                          <p>{selection.title}</p>
+                          <p className="mb-1">{selection.title}</p>
                           <p className="text-sm">{level}</p>
                         </div>
                       </div>

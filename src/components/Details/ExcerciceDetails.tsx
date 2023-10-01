@@ -3,7 +3,7 @@ import { LanguageContext } from "../LanguageContext";
 import { Link, useNavigate } from "react-router-dom";
 import { options, fetchData, optionsYTB } from "../../utils/fetchData";
 import back from "../../assets/img/left-arrow.svg";
-import play from "../../assets/img/play-button.png";
+import play from "../../assets/img/play-button.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
