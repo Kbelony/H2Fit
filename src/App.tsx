@@ -1,4 +1,5 @@
 import "./assets/style.scss";
+import BottomBar from "./components/BottomBar";
 import BodyDetails from "./components/Details/BodyDetails";
 import ExcerciceDetails from "./components/Details/ExcerciceDetails";
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/exercice/:id/" element={<ExcerciceDetails />} />
             <Route path="/selection/:id/" element={<SelectionDetails />} />
           </Routes>
+          <BottomBar />
         </BrowserRouter>
       </LanguageProvider>
     </div>

@@ -117,15 +117,44 @@ body{
                 height: 4rem;
                 font-family: 'Product-Sans-Regular';
                 
-                .active {
-                    height: 100%;
-                    /* Prend toute la hauteur de .bar */
-                    padding-top: 1.5rem;
-                    /* Ajustez le padding supérieur selon vos besoins */
-                    padding-bottom: 1.5rem;
-                    /* Ajustez le padding inférieur selon vos besoins */
+                .active-1 {
                     background-color: white;
                     color: #000;
+                    position: relative;
+                    height: 65px;
+                    width: 133px;
+                    padding-left: 44px;
+                    left: -41px;
+                    border-radius: 50px;
+                    top: -16px;
+                    padding-top: 18px;
+                    margin-right: -72px;
+                }
+                .active-2 {
+                    background-color: white;
+                    color: #000;
+                    position: relative;
+                    height: 65px;
+                    width: 139px;
+                    padding-left: 49px;
+                    left: -29px;
+                    border-radius: 50px;
+                    top: -16px;
+                    padding-top: 18px;
+                    margin-right: -67px;
+                }
+                .active-3 {
+                    background-color: white;
+                    color: #000;
+                    position: relative;
+                    height: 65px;
+                    width: 139px;
+                    padding-left: 42px;
+                    left: -29px;
+                    border-radius: 50px;
+                    top: -16px;
+                    padding-top: 18px;
+                    margin-right: -70px;
                 }
             }
             
