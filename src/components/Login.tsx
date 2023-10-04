@@ -10,6 +10,7 @@ import { User, signInWithPopup } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUserLoginDetails } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
@@ -78,12 +79,20 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!user) {
-      history("/home");
-    } else {
-      console.log(user);
-    }
-  }, [user, history]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // L'utilisateur est connecté.
+        setUser(user);
+        history("/home");
+      } else {
+        // L'utilisateur est déconnecté.
+        history("/login");
+      }
+    });
+
+    // Nettoyer l'observateur d'état d'authentification lors du démontage
+    return () => unsubscribe();
+  }, [history]);
 
   const setUser = (user: User) => {
     dispatch(

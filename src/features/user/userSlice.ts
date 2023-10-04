@@ -14,12 +14,18 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.photo = action.payload.photo;
+  
+      // Stocker les informations de l'utilisateur dans localStorage
+      localStorage.setItem('user', JSON.stringify(state));
     },
-
+  
     setSignOutState: (state) => {
       state.name = "";
       state.email = "";
       state.photo = "";
+  
+      // Supprimer les informations de l'utilisateur de localStorage
+      localStorage.removeItem('user');
     },
   },
 });
