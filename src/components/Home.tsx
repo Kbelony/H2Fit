@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../components/LanguageContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import { options, fetchData } from "../utils/fetchData";
@@ -18,6 +18,7 @@ const Home = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const user = useSelector((state: RootState) => state.user);
   const userName = user.name;
+  const history = useNavigate();
   const [exercicesData, setExercicesData] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [postLists, setPostList] = useState<
@@ -65,6 +66,12 @@ const Home = () => {
     paragraph_3: string;
     type: string;
   } | null>(null);
+
+  useEffect(() => {
+    if (!user.name) {
+      history("/login");
+    }
+  }, [user, history]);
 
   const postCollectionRef = collection(db, "articles");
   const selectionCollectionRef = collection(db, "selection");
