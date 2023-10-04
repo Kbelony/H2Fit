@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
+
+
 const BottomBar = () => {
   const location = useLocation();
+
+  // Vérifier si l'utilisateur est présent dans localStorage
+  const isUserLoggedIn = !!localStorage.getItem("user");
+
+  // Si l'utilisateur n'est pas connecté, ne pas afficher la div bottom-bar-component
+  if (!isUserLoggedIn) {
+    return null;
+  }
   return (
     <div className="bottom-bar-component">
       <div className="mobile-view">
