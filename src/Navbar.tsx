@@ -40,7 +40,6 @@ const Navbar = () => {
   const { login } = translations[translationKey];
 
   const handleLogout = () => {
-    // Ajoutez cette fonction pour gérer la déconnexion
     signOut(auth)
       .then(() => {
         // Déconnectez l'utilisateur de Google et mettez à jour le Redux store si nécessaire
@@ -69,16 +68,26 @@ const Navbar = () => {
     setIsDropdownOpenProfil(false);
   };
 
+  const isUserLoggedIn = !!localStorage.getItem("user");
+
   return (
     <nav>
       <div className="navbar-component mb-16">
         <ul className="nav-list pt-5 pl-9 ">
           <li className="nav-list-item md:flex md:justify-start">
-            <Link to={"/"}>
-              <picture className="logo">
-                <img className="w-15 ml-0 md:ml-20 md:w24" src={Logotext} />
-              </picture>
-            </Link>
+            {isUserLoggedIn ? (
+              <Link to="/home">
+                <picture className="logo">
+                  <img className="w-15 ml-0 md:ml-20 md:w24" src={Logotext} />
+                </picture>
+              </Link>
+            ) : (
+              <Link to="/">
+                <picture className="logo">
+                  <img className="w-15 ml-0 md:ml-20 md:w24" src={Logotext} />
+                </picture>
+              </Link>
+            )}
           </li>
           <li className="nav-list-item md:flex md:justify-end">
             {!userEmail ? (

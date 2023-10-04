@@ -7,8 +7,8 @@ import twitter from "../assets/img/Twitter.svg";
 import pexels from "../assets/img/pexels.jpeg";
 import { auth, provider } from "../firebase";
 import { User, signInWithPopup } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUserLoginDetails } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
+import { setUserLoginDetails } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -16,7 +16,7 @@ const Login = () => {
   const { language } = useContext(LanguageContext) || { language: "en" };
   const dispatch = useDispatch();
   const history = useNavigate();
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
   interface Translations {
     [key: string]: {
@@ -104,26 +104,26 @@ const Login = () => {
     );
 
     // Vérifier si user.photoURL n'est pas null avant de le stocker
-    if (user.photoURL) {
-      localStorage.setItem("userPhoto", user.photoURL);
-      localStorage.setItem("userName", user.displayName || "");
-    }
+    // if (user.photoURL) {
+    //   localStorage.setItem("userPhoto", user.photoURL);
+    //   localStorage.setItem("userName", user.displayName || "");
+    // }
   };
 
-  useEffect(() => {
-    const storedUserPhoto = localStorage.getItem("userPhoto");
-    const storedUserName = localStorage.getItem("userName");
-    if (storedUserPhoto) {
-      // Mettre à jour le Redux store avec les informations de l'utilisateur
-      dispatch(
-        setUserLoginDetails({
-          name: storedUserName,
-          email: user.email,
-          photo: storedUserPhoto,
-        })
-      );
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const storedUserPhoto = localStorage.getItem("userPhoto");
+  //   const storedUserName = localStorage.getItem("userName");
+  //   if (storedUserPhoto) {
+  //     // Mettre à jour le Redux store avec les informations de l'utilisateur
+  //     dispatch(
+  //       setUserLoginDetails({
+  //         name: storedUserName,
+  //         email: user.email,
+  //         photo: storedUserPhoto,
+  //       })
+  //     );
+  //   }
+  // }, [dispatch]);
 
   return (
     <div className="login-component">
