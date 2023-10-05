@@ -199,7 +199,7 @@ const Home = () => {
   const settingsArticles = {
     slidesPerView: 2,
     centeredSlides: false,
-    spaceBetween: 25,
+    spaceBetween: 15,
     loop: true,
     navigation: true,
   };
@@ -217,7 +217,7 @@ const Home = () => {
     centeredSlides: false,
     spaceBetween: 25,
     loop: true,
-    navigation: true,
+    navigation: false,
   };
 
   return (
@@ -245,7 +245,7 @@ const Home = () => {
                   />
                 </div>
                 <div className="shadowVids"></div>
-                <div className="title-div text-base ml-4 text-white">
+                <div className="title-div text-2xl ml-4 text-white">
                   {videos.title}
                 </div>
                 <Link
@@ -304,7 +304,7 @@ const Home = () => {
                     >
                       <img src={article.img_1} alt={article.title} />
                       <div className="shadow"></div>
-                      <div className="title-div text-sm text-white">
+                      <div className="title-div text-base text-white">
                         <p>{article.title}</p>
                       </div>
                     </div>
@@ -370,7 +370,7 @@ const Home = () => {
               )}
             </div>
           </div>
-          <div className="container mt-1 mb-4">
+          <div className="container mt-1 mb-20">
             <div className="text-2xl mb-3 ml-4 text-white">{selection}</div>
             <div className="flex selection-container">
               <Swiper
@@ -384,9 +384,9 @@ const Home = () => {
                       <div className="" key={index}>
                         <img src={selection.img_1} alt={selection.title} />
                         <div className="shadow"></div>
-                        <div className="title-div text-2xl text-white">
+                        <div className="title-div text-3xl text-white">
                           <p className="mb-1">{selection.title}</p>
-                          <p className="text-sm">{level}</p>
+                          <p className="text-base">{level}</p>
                         </div>
                       </div>
                     </Link>
